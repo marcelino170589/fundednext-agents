@@ -28,6 +28,7 @@ from fastapi.staticfiles import StaticFiles
 
 import ea_monitor
 import journal
+import llm_router
 import news_feed
 import notifier
 from state_manager import load as load_state, ea_vivo, ultimo_heartbeat
@@ -192,6 +193,7 @@ def _health_payload() -> dict:
         },
         "news": news,
         "telegram": notifier.get_status(),
+        "llm": llm_router.get_status(),
         "db": journal.get_counts(),
         "files": {
             "orchestrator_log": _file_meta(LOGS_DIR / "orchestrator.out"),
@@ -358,6 +360,16 @@ async def api_alerts_count():
 @app.get("/api/journal/summary")
 async def api_journal_summary(days: int = Query(30, ge=1, le=365)):
     return journal.get_journal_summary(days)
+
+
+@app.get("/api/llm/status")
+async def api_llm_status():
+    return llm_router.get_status()
+
+
+@app.post("/api/llm/reload")
+async def api_llm_reload():
+    return llm_router.reload_router()
 
 
 @app.get("/api/telegram/status")

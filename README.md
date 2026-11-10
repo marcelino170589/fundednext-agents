@@ -57,7 +57,7 @@ text
 
 | Componente | Tecnología |
 |---|---|
-| **LLM** | DeepSeek V4 (vía API compatible con OpenAI) |
+| **LLM** | Router multi-proveedor OpenAI-compatible (DeepSeek + free tiers + Meta Model API opcional) |
 | **Backend** | Python 3.10+, FastAPI, uvicorn |
 | **Comunicación** | ZeroMQ (PUB/SUB), WebSocket |
 | **Base de datos** | SQLite (WAL mode) |
@@ -100,7 +100,7 @@ text
 - Ubuntu 22.04+ / WSL2
 - Python 3.10+
 - MetaTrader 5 (Windows, con mql-zmq)
-- Cuenta DeepSeek con saldo
+- Al menos un proveedor LLM OpenAI-compatible (DeepSeek, Groq, Gemini, etc.)
 
 ### Pasos
 
@@ -116,7 +116,7 @@ pip install -r requirements.txt
 
 # 3. Configurar variables de entorno
 cp setup.env .env
-nano .env  # Editar con tu API key de DeepSeek
+nano .env  # Configura LLM_API_KEY o los LLM_PROVIDER_* de docs/LLM_ROUTER.md
 
 # 4. Inicializar DB
 python -c "import journal; journal.init_db()"
@@ -170,6 +170,28 @@ adaptadores de compatibilidad.
 
 Ver `ANALISIS.md` para la auditoría completa, problemas encontrados y mejoras.
 Ver `docs/MOVIL_Y_MONETIZACION.md` para PWA, APK, licencias y modelo de negocio.
+
+### Router multi-LLM
+
+`llm_client.py` delega en `llm_router.py`: permite combinar varios proveedores
+OpenAI-compatible, varias claves, prioridad, fallback, cooldown y conteo de
+tokens. Está pensado para usar primero los free tiers de
+[awesome-free-llm-apis](https://github.com/mnfst/awesome-free-llm-apis) y dejar
+DeepSeek/Meta como respaldo.
+
+Configuración y ejemplos completos: [`docs/LLM_ROUTER.md`](docs/LLM_ROUTER.md).
+
+Estado en el dashboard: **Sistema → Proveedores LLM** o:
+
+```bash
+curl http://127.0.0.1:8000/api/llm/status
+```
+
+Importante sobre Meta Muse: los **100M tokens/semana gratis** son de la app
+Muse, no de una API pública para terceros. Para usar Muse Spark desde este
+sistema necesitas una clave de **Meta Model API** (`https://api.meta.ai/v1`),
+que es de pago. El router la soporta si añades el proveedor, pero no puede
+consumir la cuota gratuita de la app.
 
 ### Telegram
 

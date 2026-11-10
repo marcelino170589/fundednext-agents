@@ -1870,6 +1870,7 @@
         ['Journal', String(db.decisions ?? 0), 'blue', `${db.alerts ?? 0} alertas · ${db.equity_snapshots ?? 0} snapshots`],
         ['Orquestador', files.orchestrator_log?.age_sec != null ? timeAgo(new Date(Date.now() - files.orchestrator_log.age_sec * 1000)) : '—', files.orchestrator_log?.age_sec < 1200 ? 'green' : 'amber', 'último log'],
         ['Telegram', health.telegram?.enabled ? 'activo' : health.telegram?.configured ? 'desactivado' : 'sin configurar', health.telegram?.enabled ? 'green' : 'amber', `${health.telegram?.sent ?? 0} enviados · ${health.telegram?.queue ?? 0} en cola`],
+        ['LLM router', `${health.llm?.available_providers ?? 0}/${health.llm?.provider_count ?? 0}`, (health.llm?.available_providers ?? 0) > 0 ? 'green' : 'amber', `${health.llm?.total_calls ?? 0} llamadas · ${health.llm?.prompt_tokens ?? 0}+${health.llm?.completion_tokens ?? 0} tokens`],
       ].map(([k, v, cls, s]) => `<article class="card kpi"><div class="k">${esc(k)}</div><div class="v ${cls}" style="font-size:17px">${esc(v)}</div><div class="s">${esc(s)}</div></article>`).join('');
     }
     const banner = $('system-banner');
@@ -1879,8 +1880,44 @@
         ? `<div class="banner banner-warning"><div class="banner-ico">⚠</div><div><div class="banner-title">Estado del sistema: ${esc(health.status || 'degraded')}</div><div class="banner-text">${reasons.map((reason) => `• ${esc(reason)}`).join('<br>')}</div></div></div>`
         : '<div class="banner banner-info"><div class="banner-ico">✓</div><div><div class="banner-title">Sistema operativo</div><div class="banner-text">API, EA y fuentes de noticias sin incidencias reportadas.</div></div></div>';
     }
+    renderLLMProviders();
     renderConfigTable();
     renderAnalysis();
+  }
+
+  function renderLLMProviders() {
+    const root = $('llm-providers');
+    const summary = $('llm-summary');
+    if (!root) return;
+    const llm = Store.health?.llm || {};
+    const providers = llm.providers || [];
+    if (summary) {
+      summary.textContent = llm.provider_count
+        ? `${llm.available_providers}/${llm.provider_count} disponibles · ${llm.total_calls ?? 0} llamadas`
+        : 'sin proveedores';
+    }
+    if (!providers.length) {
+      root.innerHTML = '<div class="empty"><strong>Sin proveedores LLM</strong>Configura LLM_PROVIDER_1_* en .env. Ver docs/LLM_ROUTER.md.</div>';
+      return;
+    }
+    root.innerHTML = `<table class="data">
+      <thead><tr><th>Proveedor</th><th>Modelo</th><th>Prio</th><th>Claves</th><th>Llamadas</th><th>Tokens in/out</th><th>Estado</th></tr></thead><tbody>
+      ${providers.map((provider) => {
+        const available = Number(provider.available_keys || 0);
+        const cooling = (provider.key_slots || []).filter((slot) => Number(slot.cooldown_sec) > 0).length;
+        const state = available > 0 ? 'disponible' : cooling > 0 ? `cooldown ${Math.max(...(provider.key_slots || []).map((slot) => Number(slot.cooldown_sec) || 0))}s` : 'sin claves';
+        const cls = available > 0 ? 'green' : 'amber';
+        return `<tr>
+          <td><b>${esc(provider.name)}</b></td>
+          <td class="mono tiny">${esc(provider.model)}</td>
+          <td class="num">${esc(provider.priority)}</td>
+          <td class="num">${available}/${provider.keys}</td>
+          <td class="num">${esc(provider.calls ?? 0)}</td>
+          <td class="num">${esc(provider.prompt_tokens ?? 0)} / ${esc(provider.completion_tokens ?? 0)}</td>
+          <td class="${cls}">${esc(state)}${provider.last_error ? ` · ${esc(String(provider.last_error).slice(0, 45))}` : ''}</td>
+        </tr>`;
+      }).join('')}
+      </tbody></table>`;
   }
 
   function renderConfigTable() {

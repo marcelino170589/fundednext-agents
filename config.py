@@ -9,6 +9,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in ("1", "true", "yes", "on", "si", "sí")
+
+
 # ══════════════════════════════════════════════════════════════════
 # LLM
 # ══════════════════════════════════════════════════════════════════
@@ -16,6 +24,17 @@ LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.deepseek.com")
 LLM_MODEL = os.getenv("LLM_MODEL", "deepseek-flash")
 LLM_TEMPERATURE = 0.15
+
+# Router multi-proveedor (ver docs/LLM_ROUTER.md)
+LLM_ROUTER_ENABLED = _env_bool("LLM_ROUTER_ENABLED", True)
+LLM_PROVIDERS_FILE = os.getenv("LLM_PROVIDERS_FILE", "").strip()
+LLM_ROUTER_MAX_ATTEMPTS = int(os.getenv("LLM_ROUTER_MAX_ATTEMPTS", "6"))
+LLM_ROUTER_COOLDOWN_SEC = int(os.getenv("LLM_ROUTER_COOLDOWN_SEC", "90"))
+LLM_ROUTER_TIMEOUT = float(os.getenv("LLM_ROUTER_TIMEOUT", "40"))
+LLM_ROUTER_STATE_FILE = os.getenv(
+    "LLM_ROUTER_STATE_FILE",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "llm_router_state.json"),
+)
 
 # ══════════════════════════════════════════════════════════════════
 # CUENTA FNL:004 (50K)
@@ -138,13 +157,6 @@ ZMQ_PC_IP  = "172.29.16.1"
 # ══════════════════════════════════════════════════════════════════
 # TELEGRAM
 # ══════════════════════════════════════════════════════════════════
-def _env_bool(name: str, default: bool = False) -> bool:
-    value = os.getenv(name)
-    if value is None:
-        return default
-    return value.strip().lower() in ("1", "true", "yes", "on", "si", "sí")
-
-
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "").strip()
 TELEGRAM_ENABLED = _env_bool("TELEGRAM_ENABLED", False)

@@ -256,6 +256,8 @@ Limitaciones de la verificación:
 | `docs/ESTRATEGIA_TRULLAS.md` | Reglas, fuentes, límites y validación pendiente. |
 | `journal.py` | Helpers de decisión, señales, resumen y conteos. |
 | `notifier.py` | Telegram completo: cola, chunks, reintentos, rate-limit y deduplicación. |
+| `llm_router.py` / `llm_client.py` | Router multi-proveedor OpenAI-compatible con fallback, claves y tokens. |
+| `docs/LLM_ROUTER.md` | Guía de proveedores gratuitos, prioridades y límites de Meta Muse. |
 | `ea_monitor.py` | Monitor ZMQ independiente para que el dashboard vea el EA aunque el orquestador esté detenido. |
 | `static/manifest.webmanifest`, `static/sw.js`, `static/icon-*.png` | PWA instalable. |
 | `docs/MOVIL_Y_MONETIZACION.md` | APK, PWA, licencias y monetización. |
