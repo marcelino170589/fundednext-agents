@@ -1,0 +1,61 @@
+# Entorno virtual
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Variables de entorno (NUNCA subir)
+.env
+setup.env
+*.env
+
+# Base de datos y logs
+data/*.db
+data/*.db-*
+data/*.json
+!data/backtest_*.json
+!data/grid_*.json
+!data/filter_*.json
+!data/dilution_state_default.json
+data/_logs/
+data/m1/
+data/h1/
+data/d1/
+logs/*
+!logs/.gitkeep
+logs/*.log
+logs/*.jsonl
+logs/archive/
+
+# Datos históricos pesados: se conservan D1/H4/H1 para la demo.
+data/*.csv
+!data/*_D1.csv
+!data/*_H1.csv
+!data/*_H4.csv
+!data/*_D1_2023_2024.csv
+!data/README.md
+
+# Backups
+backups/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Modelos LLM locales (si los usas)
+models/
+*.gguf
+
+# Archivos temporales y builds móviles
+tmp/
+temp/
+tmp_*/
+dist/
+android/
+ios/
+*.apk
+*.aab
+*.keystore
+*.jks

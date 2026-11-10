@@ -1,0 +1,21 @@
+# agents/agent_fundamental.py
+from llm_client import ask_json
+from prompt_rotator import get_prompt
+
+SYSTEM = """Analista fundamental en política monetaria. Determinas si FAVORECE
+o BLOQUEA en 24-48h.
+
+FNL:004: noticias permitidas pero solo 40% de ganancias cuentan.
+Sugiere bloquear si la noticia es de impacto 3 en ±15 min.
+
+Responde SOLO JSON:
+{"activo":"...","favorece":true|false,"bloqueado_por_noticia":true|false,
+ "ventana_bloqueo":"HH:MM-HH:MM"|null,"confianza":0-100,"razon":"máx 30 palabras"}"""
+
+def run(activo, contexto):
+    system, variant = get_prompt("fundamental", activo)
+    if not system:
+        system = SYSTEM
+    out = ask_json(system, f"Activo: {activo}\nContexto:\n{contexto}")
+    out["_variant"] = variant
+    return out

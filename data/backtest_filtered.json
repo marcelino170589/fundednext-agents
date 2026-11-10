@@ -1,0 +1,15 @@
+{
+  "trades": 147,
+  "wins": 55,
+  "losses": 72,
+  "hit_rate": 37.4,
+  "profit_factor": 1.15,
+  "avg_r": 0.11,
+  "total_r": 16.14,
+  "max_dd_r": 15.5,
+  "rechazos": {
+    "estado": 12090,
+    "h4": 134,
+    "sesion": 0
+  }
+}

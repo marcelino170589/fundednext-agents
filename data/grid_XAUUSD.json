@@ -1,0 +1,2358 @@
+{
+  "top": {
+    "best_pf": {
+      "trades": 549,
+      "wins": 204,
+      "losses": 277,
+      "hit_rate": 37.2,
+      "profit_factor": 1.1,
+      "avg_r": 0.07,
+      "total_r": 39.77,
+      "max_dd_r": 31.09,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    "best_hit": {
+      "trades": 549,
+      "wins": 204,
+      "losses": 277,
+      "hit_rate": 37.2,
+      "profit_factor": 1.1,
+      "avg_r": 0.07,
+      "total_r": 39.77,
+      "max_dd_r": 31.09,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    "best_avg_r": {
+      "trades": 549,
+      "wins": 126,
+      "losses": 303,
+      "hit_rate": 23.0,
+      "profit_factor": 1.04,
+      "avg_r": 0.13,
+      "total_r": 73.93,
+      "max_dd_r": 34.33,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    }
+  },
+  "all": [
+    {
+      "trades": 628,
+      "wins": 207,
+      "losses": 311,
+      "hit_rate": 33.0,
+      "profit_factor": 1.0,
+      "avg_r": 0.04,
+      "total_r": 28.08,
+      "max_dd_r": 37.16,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 628,
+      "wins": 147,
+      "losses": 332,
+      "hit_rate": 23.4,
+      "profit_factor": 0.89,
+      "avg_r": 0.03,
+      "total_r": 21.23,
+      "max_dd_r": 52.74,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 628,
+      "wins": 116,
+      "losses": 343,
+      "hit_rate": 18.5,
+      "profit_factor": 0.85,
+      "avg_r": 0.04,
+      "total_r": 27.19,
+      "max_dd_r": 54.42,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 841,
+      "wins": 276,
+      "losses": 415,
+      "hit_rate": 32.8,
+      "profit_factor": 1.0,
+      "avg_r": 0.04,
+      "total_r": 33.33,
+      "max_dd_r": 31.6,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 841,
+      "wins": 204,
+      "losses": 442,
+      "hit_rate": 24.3,
+      "profit_factor": 0.92,
+      "avg_r": 0.04,
+      "total_r": 37.53,
+      "max_dd_r": 40.73,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 841,
+      "wins": 162,
+      "losses": 455,
+      "hit_rate": 19.3,
+      "profit_factor": 0.89,
+      "avg_r": 0.06,
+      "total_r": 53.18,
+      "max_dd_r": 39.9,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 962,
+      "wins": 319,
+      "losses": 465,
+      "hit_rate": 33.2,
+      "profit_factor": 1.03,
+      "avg_r": 0.05,
+      "total_r": 51.41,
+      "max_dd_r": 33.08,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 962,
+      "wins": 234,
+      "losses": 495,
+      "hit_rate": 24.3,
+      "profit_factor": 0.95,
+      "avg_r": 0.06,
+      "total_r": 56.63,
+      "max_dd_r": 40.24,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 962,
+      "wins": 181,
+      "losses": 513,
+      "hit_rate": 18.8,
+      "profit_factor": 0.88,
+      "avg_r": 0.07,
+      "total_r": 64.68,
+      "max_dd_r": 47.25,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 618,
+      "wins": 205,
+      "losses": 308,
+      "hit_rate": 33.2,
+      "profit_factor": 1.0,
+      "avg_r": 0.04,
+      "total_r": 26.42,
+      "max_dd_r": 37.22,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 618,
+      "wins": 146,
+      "losses": 329,
+      "hit_rate": 23.6,
+      "profit_factor": 0.89,
+      "avg_r": 0.03,
+      "total_r": 19.09,
+      "max_dd_r": 52.81,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 618,
+      "wins": 115,
+      "losses": 340,
+      "hit_rate": 18.6,
+      "profit_factor": 0.85,
+      "avg_r": 0.04,
+      "total_r": 24.56,
+      "max_dd_r": 56.99,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 831,
+      "wins": 274,
+      "losses": 412,
+      "hit_rate": 33.0,
+      "profit_factor": 1.0,
+      "avg_r": 0.04,
+      "total_r": 31.66,
+      "max_dd_r": 31.87,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 831,
+      "wins": 203,
+      "losses": 439,
+      "hit_rate": 24.4,
+      "profit_factor": 0.92,
+      "avg_r": 0.04,
+      "total_r": 35.39,
+      "max_dd_r": 40.79,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 831,
+      "wins": 161,
+      "losses": 452,
+      "hit_rate": 19.4,
+      "profit_factor": 0.89,
+      "avg_r": 0.06,
+      "total_r": 50.54,
+      "max_dd_r": 42.47,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 952,
+      "wins": 317,
+      "losses": 462,
+      "hit_rate": 33.3,
+      "profit_factor": 1.03,
+      "avg_r": 0.05,
+      "total_r": 49.74,
+      "max_dd_r": 33.35,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 952,
+      "wins": 233,
+      "losses": 492,
+      "hit_rate": 24.5,
+      "profit_factor": 0.95,
+      "avg_r": 0.06,
+      "total_r": 54.49,
+      "max_dd_r": 40.31,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 952,
+      "wins": 180,
+      "losses": 510,
+      "hit_rate": 18.9,
+      "profit_factor": 0.88,
+      "avg_r": 0.07,
+      "total_r": 62.04,
+      "max_dd_r": 49.82,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 607,
+      "wins": 204,
+      "losses": 302,
+      "hit_rate": 33.6,
+      "profit_factor": 1.01,
+      "avg_r": 0.05,
+      "total_r": 31.13,
+      "max_dd_r": 31.36,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 607,
+      "wins": 147,
+      "losses": 323,
+      "hit_rate": 24.2,
+      "profit_factor": 0.91,
+      "avg_r": 0.04,
+      "total_r": 25.63,
+      "max_dd_r": 46.94,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 607,
+      "wins": 115,
+      "losses": 334,
+      "hit_rate": 18.9,
+      "profit_factor": 0.86,
+      "avg_r": 0.05,
+      "total_r": 28.85,
+      "max_dd_r": 52.71,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 820,
+      "wins": 273,
+      "losses": 406,
+      "hit_rate": 33.3,
+      "profit_factor": 1.01,
+      "avg_r": 0.04,
+      "total_r": 36.38,
+      "max_dd_r": 29.69,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 820,
+      "wins": 204,
+      "losses": 433,
+      "hit_rate": 24.9,
+      "profit_factor": 0.94,
+      "avg_r": 0.05,
+      "total_r": 41.93,
+      "max_dd_r": 34.93,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 820,
+      "wins": 161,
+      "losses": 446,
+      "hit_rate": 19.6,
+      "profit_factor": 0.9,
+      "avg_r": 0.07,
+      "total_r": 54.83,
+      "max_dd_r": 38.18,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 941,
+      "wins": 317,
+      "losses": 455,
+      "hit_rate": 33.7,
+      "profit_factor": 1.05,
+      "avg_r": 0.06,
+      "total_r": 56.95,
+      "max_dd_r": 32.17,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 941,
+      "wins": 235,
+      "losses": 485,
+      "hit_rate": 25.0,
+      "profit_factor": 0.97,
+      "avg_r": 0.07,
+      "total_r": 64.03,
+      "max_dd_r": 33.32,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 941,
+      "wins": 180,
+      "losses": 504,
+      "hit_rate": 19.1,
+      "profit_factor": 0.89,
+      "avg_r": 0.07,
+      "total_r": 66.33,
+      "max_dd_r": 45.54,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 590,
+      "wins": 202,
+      "losses": 293,
+      "hit_rate": 34.2,
+      "profit_factor": 1.03,
+      "avg_r": 0.06,
+      "total_r": 35.26,
+      "max_dd_r": 28.52,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 590,
+      "wins": 145,
+      "losses": 314,
+      "hit_rate": 24.6,
+      "profit_factor": 0.92,
+      "avg_r": 0.05,
+      "total_r": 28.76,
+      "max_dd_r": 44.0,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 590,
+      "wins": 114,
+      "losses": 325,
+      "hit_rate": 19.3,
+      "profit_factor": 0.88,
+      "avg_r": 0.06,
+      "total_r": 33.69,
+      "max_dd_r": 48.93,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 802,
+      "wins": 271,
+      "losses": 396,
+      "hit_rate": 33.8,
+      "profit_factor": 1.03,
+      "avg_r": 0.05,
+      "total_r": 41.51,
+      "max_dd_r": 27.1,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 802,
+      "wins": 202,
+      "losses": 423,
+      "hit_rate": 25.2,
+      "profit_factor": 0.96,
+      "avg_r": 0.06,
+      "total_r": 46.06,
+      "max_dd_r": 30.99,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 802,
+      "wins": 160,
+      "losses": 436,
+      "hit_rate": 20.0,
+      "profit_factor": 0.92,
+      "avg_r": 0.08,
+      "total_r": 60.68,
+      "max_dd_r": 35.89,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 923,
+      "wins": 315,
+      "losses": 445,
+      "hit_rate": 34.1,
+      "profit_factor": 1.06,
+      "avg_r": 0.07,
+      "total_r": 62.08,
+      "max_dd_r": 29.17,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 923,
+      "wins": 233,
+      "losses": 475,
+      "hit_rate": 25.2,
+      "profit_factor": 0.98,
+      "avg_r": 0.07,
+      "total_r": 68.16,
+      "max_dd_r": 30.32,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 923,
+      "wins": 179,
+      "losses": 494,
+      "hit_rate": 19.4,
+      "profit_factor": 0.91,
+      "avg_r": 0.08,
+      "total_r": 72.18,
+      "max_dd_r": 40.76,
+      "params": {
+        "min_atr_impulse": 1.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 610,
+      "wins": 200,
+      "losses": 313,
+      "hit_rate": 32.8,
+      "profit_factor": 0.96,
+      "avg_r": 0.01,
+      "total_r": 3.2,
+      "max_dd_r": 33.78,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 610,
+      "wins": 144,
+      "losses": 334,
+      "hit_rate": 23.6,
+      "profit_factor": 0.86,
+      "avg_r": 0.0,
+      "total_r": 0.62,
+      "max_dd_r": 35.36,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 610,
+      "wins": 119,
+      "losses": 342,
+      "hit_rate": 19.5,
+      "profit_factor": 0.87,
+      "avg_r": 0.03,
+      "total_r": 16.67,
+      "max_dd_r": 30.89,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 814,
+      "wins": 260,
+      "losses": 418,
+      "hit_rate": 31.9,
+      "profit_factor": 0.93,
+      "avg_r": -0.01,
+      "total_r": -11.04,
+      "max_dd_r": 49.31,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 814,
+      "wins": 192,
+      "losses": 441,
+      "hit_rate": 23.6,
+      "profit_factor": 0.87,
+      "avg_r": 0.0,
+      "total_r": 1.34,
+      "max_dd_r": 50.48,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 814,
+      "wins": 159,
+      "losses": 451,
+      "hit_rate": 19.5,
+      "profit_factor": 0.88,
+      "avg_r": 0.03,
+      "total_r": 25.82,
+      "max_dd_r": 45.35,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 916,
+      "wins": 294,
+      "losses": 464,
+      "hit_rate": 32.1,
+      "profit_factor": 0.95,
+      "avg_r": -0.01,
+      "total_r": -5.57,
+      "max_dd_r": 47.24,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 916,
+      "wins": 215,
+      "losses": 491,
+      "hit_rate": 23.5,
+      "profit_factor": 0.88,
+      "avg_r": 0.0,
+      "total_r": 3.03,
+      "max_dd_r": 50.05,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 916,
+      "wins": 176,
+      "losses": 503,
+      "hit_rate": 19.2,
+      "profit_factor": 0.87,
+      "avg_r": 0.03,
+      "total_r": 28.32,
+      "max_dd_r": 52.4,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 602,
+      "wins": 199,
+      "losses": 311,
+      "hit_rate": 33.1,
+      "profit_factor": 0.96,
+      "avg_r": 0.0,
+      "total_r": 2.04,
+      "max_dd_r": 34.33,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 602,
+      "wins": 143,
+      "losses": 332,
+      "hit_rate": 23.8,
+      "profit_factor": 0.86,
+      "avg_r": -0.0,
+      "total_r": -1.05,
+      "max_dd_r": 35.63,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 602,
+      "wins": 118,
+      "losses": 340,
+      "hit_rate": 19.6,
+      "profit_factor": 0.87,
+      "avg_r": 0.02,
+      "total_r": 14.51,
+      "max_dd_r": 31.93,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 806,
+      "wins": 259,
+      "losses": 416,
+      "hit_rate": 32.1,
+      "profit_factor": 0.93,
+      "avg_r": -0.02,
+      "total_r": -12.21,
+      "max_dd_r": 49.57,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 806,
+      "wins": 191,
+      "losses": 439,
+      "hit_rate": 23.7,
+      "profit_factor": 0.87,
+      "avg_r": -0.0,
+      "total_r": -0.33,
+      "max_dd_r": 50.75,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 806,
+      "wins": 158,
+      "losses": 449,
+      "hit_rate": 19.6,
+      "profit_factor": 0.88,
+      "avg_r": 0.03,
+      "total_r": 23.65,
+      "max_dd_r": 45.62,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 908,
+      "wins": 293,
+      "losses": 462,
+      "hit_rate": 32.3,
+      "profit_factor": 0.95,
+      "avg_r": -0.01,
+      "total_r": -6.73,
+      "max_dd_r": 47.51,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 908,
+      "wins": 214,
+      "losses": 489,
+      "hit_rate": 23.6,
+      "profit_factor": 0.88,
+      "avg_r": 0.0,
+      "total_r": 1.37,
+      "max_dd_r": 50.65,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 908,
+      "wins": 175,
+      "losses": 501,
+      "hit_rate": 19.3,
+      "profit_factor": 0.87,
+      "avg_r": 0.03,
+      "total_r": 26.15,
+      "max_dd_r": 54.9,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 591,
+      "wins": 198,
+      "losses": 304,
+      "hit_rate": 33.5,
+      "profit_factor": 0.98,
+      "avg_r": 0.01,
+      "total_r": 7.06,
+      "max_dd_r": 31.16,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 591,
+      "wins": 144,
+      "losses": 325,
+      "hit_rate": 24.4,
+      "profit_factor": 0.89,
+      "avg_r": 0.01,
+      "total_r": 5.8,
+      "max_dd_r": 32.46,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 591,
+      "wins": 118,
+      "losses": 333,
+      "hit_rate": 20.0,
+      "profit_factor": 0.89,
+      "avg_r": 0.03,
+      "total_r": 19.11,
+      "max_dd_r": 32.5,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 795,
+      "wins": 258,
+      "losses": 409,
+      "hit_rate": 32.5,
+      "profit_factor": 0.95,
+      "avg_r": -0.01,
+      "total_r": -7.19,
+      "max_dd_r": 46.4,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 795,
+      "wins": 192,
+      "losses": 432,
+      "hit_rate": 24.2,
+      "profit_factor": 0.89,
+      "avg_r": 0.01,
+      "total_r": 6.52,
+      "max_dd_r": 47.57,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 795,
+      "wins": 158,
+      "losses": 442,
+      "hit_rate": 19.9,
+      "profit_factor": 0.89,
+      "avg_r": 0.04,
+      "total_r": 28.25,
+      "max_dd_r": 42.45,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 897,
+      "wins": 293,
+      "losses": 454,
+      "hit_rate": 32.7,
+      "profit_factor": 0.97,
+      "avg_r": 0.0,
+      "total_r": 0.79,
+      "max_dd_r": 44.33,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 897,
+      "wins": 216,
+      "losses": 481,
+      "hit_rate": 24.1,
+      "profit_factor": 0.9,
+      "avg_r": 0.01,
+      "total_r": 11.22,
+      "max_dd_r": 44.99,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 897,
+      "wins": 175,
+      "losses": 494,
+      "hit_rate": 19.5,
+      "profit_factor": 0.89,
+      "avg_r": 0.03,
+      "total_r": 30.75,
+      "max_dd_r": 54.2,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 576,
+      "wins": 197,
+      "losses": 295,
+      "hit_rate": 34.2,
+      "profit_factor": 1.0,
+      "avg_r": 0.02,
+      "total_r": 13.73,
+      "max_dd_r": 29.87,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 576,
+      "wins": 142,
+      "losses": 317,
+      "hit_rate": 24.7,
+      "profit_factor": 0.9,
+      "avg_r": 0.02,
+      "total_r": 8.97,
+      "max_dd_r": 31.46,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 576,
+      "wins": 118,
+      "losses": 325,
+      "hit_rate": 20.5,
+      "profit_factor": 0.91,
+      "avg_r": 0.04,
+      "total_r": 24.83,
+      "max_dd_r": 30.22,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 779,
+      "wins": 257,
+      "losses": 399,
+      "hit_rate": 33.0,
+      "profit_factor": 0.97,
+      "avg_r": 0.0,
+      "total_r": 0.49,
+      "max_dd_r": 44.4,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 779,
+      "wins": 190,
+      "losses": 423,
+      "hit_rate": 24.4,
+      "profit_factor": 0.9,
+      "avg_r": 0.01,
+      "total_r": 10.69,
+      "max_dd_r": 45.57,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 779,
+      "wins": 158,
+      "losses": 433,
+      "hit_rate": 20.3,
+      "profit_factor": 0.91,
+      "avg_r": 0.04,
+      "total_r": 34.97,
+      "max_dd_r": 41.65,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 881,
+      "wins": 292,
+      "losses": 444,
+      "hit_rate": 33.1,
+      "profit_factor": 0.99,
+      "avg_r": 0.01,
+      "total_r": 8.46,
+      "max_dd_r": 42.33,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 881,
+      "wins": 214,
+      "losses": 472,
+      "hit_rate": 24.3,
+      "profit_factor": 0.91,
+      "avg_r": 0.02,
+      "total_r": 15.39,
+      "max_dd_r": 46.3,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 881,
+      "wins": 175,
+      "losses": 485,
+      "hit_rate": 19.9,
+      "profit_factor": 0.9,
+      "avg_r": 0.04,
+      "total_r": 37.47,
+      "max_dd_r": 53.86,
+      "params": {
+        "min_atr_impulse": 2.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 575,
+      "wins": 206,
+      "losses": 293,
+      "hit_rate": 35.8,
+      "profit_factor": 1.05,
+      "avg_r": 0.05,
+      "total_r": 27.89,
+      "max_dd_r": 33.82,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 575,
+      "wins": 156,
+      "losses": 310,
+      "hit_rate": 27.1,
+      "profit_factor": 1.01,
+      "avg_r": 0.07,
+      "total_r": 42.87,
+      "max_dd_r": 39.06,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 575,
+      "wins": 126,
+      "losses": 318,
+      "hit_rate": 21.9,
+      "profit_factor": 0.99,
+      "avg_r": 0.11,
+      "total_r": 61.48,
+      "max_dd_r": 37.06,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 722,
+      "wins": 247,
+      "losses": 368,
+      "hit_rate": 34.2,
+      "profit_factor": 1.01,
+      "avg_r": 0.02,
+      "total_r": 17.83,
+      "max_dd_r": 38.5,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 722,
+      "wins": 187,
+      "losses": 390,
+      "hit_rate": 25.9,
+      "profit_factor": 0.96,
+      "avg_r": 0.05,
+      "total_r": 34.04,
+      "max_dd_r": 41.08,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 722,
+      "wins": 153,
+      "losses": 399,
+      "hit_rate": 21.2,
+      "profit_factor": 0.96,
+      "avg_r": 0.08,
+      "total_r": 60.23,
+      "max_dd_r": 36.52,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 811,
+      "wins": 272,
+      "losses": 410,
+      "hit_rate": 33.5,
+      "profit_factor": 1.0,
+      "avg_r": 0.02,
+      "total_r": 14.14,
+      "max_dd_r": 38.05,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 811,
+      "wins": 206,
+      "losses": 436,
+      "hit_rate": 25.4,
+      "profit_factor": 0.94,
+      "avg_r": 0.04,
+      "total_r": 30.39,
+      "max_dd_r": 38.17,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 811,
+      "wins": 164,
+      "losses": 447,
+      "hit_rate": 20.2,
+      "profit_factor": 0.92,
+      "avg_r": 0.06,
+      "total_r": 50.86,
+      "max_dd_r": 48.99,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 572,
+      "wins": 206,
+      "losses": 292,
+      "hit_rate": 36.0,
+      "profit_factor": 1.06,
+      "avg_r": 0.05,
+      "total_r": 28.65,
+      "max_dd_r": 33.27,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 572,
+      "wins": 156,
+      "losses": 309,
+      "hit_rate": 27.3,
+      "profit_factor": 1.01,
+      "avg_r": 0.08,
+      "total_r": 43.63,
+      "max_dd_r": 38.51,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 572,
+      "wins": 126,
+      "losses": 317,
+      "hit_rate": 22.0,
+      "profit_factor": 0.99,
+      "avg_r": 0.11,
+      "total_r": 62.24,
+      "max_dd_r": 36.51,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 719,
+      "wins": 247,
+      "losses": 367,
+      "hit_rate": 34.4,
+      "profit_factor": 1.01,
+      "avg_r": 0.03,
+      "total_r": 18.59,
+      "max_dd_r": 37.95,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 719,
+      "wins": 187,
+      "losses": 389,
+      "hit_rate": 26.0,
+      "profit_factor": 0.96,
+      "avg_r": 0.05,
+      "total_r": 34.79,
+      "max_dd_r": 40.53,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 719,
+      "wins": 153,
+      "losses": 398,
+      "hit_rate": 21.3,
+      "profit_factor": 0.96,
+      "avg_r": 0.08,
+      "total_r": 60.99,
+      "max_dd_r": 35.97,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 808,
+      "wins": 272,
+      "losses": 409,
+      "hit_rate": 33.7,
+      "profit_factor": 1.0,
+      "avg_r": 0.02,
+      "total_r": 14.9,
+      "max_dd_r": 37.5,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 808,
+      "wins": 206,
+      "losses": 435,
+      "hit_rate": 25.5,
+      "profit_factor": 0.95,
+      "avg_r": 0.04,
+      "total_r": 31.15,
+      "max_dd_r": 37.62,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 808,
+      "wins": 164,
+      "losses": 446,
+      "hit_rate": 20.3,
+      "profit_factor": 0.92,
+      "avg_r": 0.06,
+      "total_r": 51.62,
+      "max_dd_r": 48.99,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 562,
+      "wins": 205,
+      "losses": 286,
+      "hit_rate": 36.5,
+      "profit_factor": 1.08,
+      "avg_r": 0.06,
+      "total_r": 32.67,
+      "max_dd_r": 32.09,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 562,
+      "wins": 157,
+      "losses": 303,
+      "hit_rate": 27.9,
+      "profit_factor": 1.04,
+      "avg_r": 0.09,
+      "total_r": 49.48,
+      "max_dd_r": 37.33,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 562,
+      "wins": 126,
+      "losses": 311,
+      "hit_rate": 22.4,
+      "profit_factor": 1.01,
+      "avg_r": 0.12,
+      "total_r": 65.84,
+      "max_dd_r": 35.33,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 709,
+      "wins": 246,
+      "losses": 361,
+      "hit_rate": 34.7,
+      "profit_factor": 1.02,
+      "avg_r": 0.03,
+      "total_r": 22.62,
+      "max_dd_r": 36.77,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 709,
+      "wins": 188,
+      "losses": 383,
+      "hit_rate": 26.5,
+      "profit_factor": 0.98,
+      "avg_r": 0.06,
+      "total_r": 40.64,
+      "max_dd_r": 39.35,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 709,
+      "wins": 153,
+      "losses": 392,
+      "hit_rate": 21.6,
+      "profit_factor": 0.98,
+      "avg_r": 0.09,
+      "total_r": 64.59,
+      "max_dd_r": 34.79,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 798,
+      "wins": 272,
+      "losses": 402,
+      "hit_rate": 34.1,
+      "profit_factor": 1.01,
+      "avg_r": 0.03,
+      "total_r": 21.42,
+      "max_dd_r": 36.32,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 798,
+      "wins": 208,
+      "losses": 428,
+      "hit_rate": 26.1,
+      "profit_factor": 0.97,
+      "avg_r": 0.05,
+      "total_r": 40.0,
+      "max_dd_r": 36.44,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 798,
+      "wins": 164,
+      "losses": 440,
+      "hit_rate": 20.6,
+      "profit_factor": 0.93,
+      "avg_r": 0.07,
+      "total_r": 55.22,
+      "max_dd_r": 48.57,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 549,
+      "wins": 204,
+      "losses": 277,
+      "hit_rate": 37.2,
+      "profit_factor": 1.1,
+      "avg_r": 0.07,
+      "total_r": 39.77,
+      "max_dd_r": 31.09,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 549,
+      "wins": 155,
+      "losses": 295,
+      "hit_rate": 28.2,
+      "profit_factor": 1.05,
+      "avg_r": 0.1,
+      "total_r": 53.08,
+      "max_dd_r": 36.33,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 549,
+      "wins": 126,
+      "losses": 303,
+      "hit_rate": 23.0,
+      "profit_factor": 1.04,
+      "avg_r": 0.13,
+      "total_r": 73.93,
+      "max_dd_r": 34.33,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 696,
+      "wins": 245,
+      "losses": 352,
+      "hit_rate": 35.2,
+      "profit_factor": 1.04,
+      "avg_r": 0.04,
+      "total_r": 29.71,
+      "max_dd_r": 35.77,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 696,
+      "wins": 186,
+      "losses": 375,
+      "hit_rate": 26.7,
+      "profit_factor": 0.99,
+      "avg_r": 0.06,
+      "total_r": 44.24,
+      "max_dd_r": 38.35,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 696,
+      "wins": 153,
+      "losses": 384,
+      "hit_rate": 22.0,
+      "profit_factor": 1.0,
+      "avg_r": 0.1,
+      "total_r": 72.68,
+      "max_dd_r": 33.79,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 785,
+      "wins": 271,
+      "losses": 393,
+      "hit_rate": 34.5,
+      "profit_factor": 1.03,
+      "avg_r": 0.04,
+      "total_r": 28.52,
+      "max_dd_r": 35.32,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 785,
+      "wins": 206,
+      "losses": 420,
+      "hit_rate": 26.2,
+      "profit_factor": 0.98,
+      "avg_r": 0.06,
+      "total_r": 43.6,
+      "max_dd_r": 35.44,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 785,
+      "wins": 164,
+      "losses": 432,
+      "hit_rate": 20.9,
+      "profit_factor": 0.95,
+      "avg_r": 0.08,
+      "total_r": 63.31,
+      "max_dd_r": 44.95,
+      "params": {
+        "min_atr_impulse": 2.5,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 507,
+      "wins": 183,
+      "losses": 263,
+      "hit_rate": 36.1,
+      "profit_factor": 1.04,
+      "avg_r": 0.04,
+      "total_r": 19.61,
+      "max_dd_r": 26.26,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 507,
+      "wins": 137,
+      "losses": 281,
+      "hit_rate": 27.0,
+      "profit_factor": 0.98,
+      "avg_r": 0.06,
+      "total_r": 28.45,
+      "max_dd_r": 28.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 507,
+      "wins": 115,
+      "losses": 287,
+      "hit_rate": 22.7,
+      "profit_factor": 1.0,
+      "avg_r": 0.11,
+      "total_r": 54.63,
+      "max_dd_r": 28.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 614,
+      "wins": 216,
+      "losses": 318,
+      "hit_rate": 35.2,
+      "profit_factor": 1.02,
+      "avg_r": 0.03,
+      "total_r": 15.78,
+      "max_dd_r": 30.4,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 614,
+      "wins": 158,
+      "losses": 344,
+      "hit_rate": 25.7,
+      "profit_factor": 0.92,
+      "avg_r": 0.02,
+      "total_r": 14.44,
+      "max_dd_r": 28.12,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 614,
+      "wins": 133,
+      "losses": 350,
+      "hit_rate": 21.7,
+      "profit_factor": 0.95,
+      "avg_r": 0.08,
+      "total_r": 46.42,
+      "max_dd_r": 26.79,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 678,
+      "wins": 238,
+      "losses": 344,
+      "hit_rate": 35.1,
+      "profit_factor": 1.04,
+      "avg_r": 0.03,
+      "total_r": 21.35,
+      "max_dd_r": 25.19,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 678,
+      "wins": 175,
+      "losses": 375,
+      "hit_rate": 25.8,
+      "profit_factor": 0.93,
+      "avg_r": 0.02,
+      "total_r": 15.55,
+      "max_dd_r": 27.15,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 678,
+      "wins": 142,
+      "losses": 384,
+      "hit_rate": 20.9,
+      "profit_factor": 0.92,
+      "avg_r": 0.05,
+      "total_r": 37.0,
+      "max_dd_r": 30.23,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 10,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 506,
+      "wins": 183,
+      "losses": 263,
+      "hit_rate": 36.2,
+      "profit_factor": 1.04,
+      "avg_r": 0.04,
+      "total_r": 19.82,
+      "max_dd_r": 26.06,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 506,
+      "wins": 137,
+      "losses": 281,
+      "hit_rate": 27.1,
+      "profit_factor": 0.98,
+      "avg_r": 0.06,
+      "total_r": 28.65,
+      "max_dd_r": 28.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 506,
+      "wins": 115,
+      "losses": 287,
+      "hit_rate": 22.7,
+      "profit_factor": 1.0,
+      "avg_r": 0.11,
+      "total_r": 54.83,
+      "max_dd_r": 28.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 613,
+      "wins": 216,
+      "losses": 318,
+      "hit_rate": 35.2,
+      "profit_factor": 1.02,
+      "avg_r": 0.03,
+      "total_r": 15.99,
+      "max_dd_r": 30.19,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 613,
+      "wins": 158,
+      "losses": 344,
+      "hit_rate": 25.8,
+      "profit_factor": 0.92,
+      "avg_r": 0.02,
+      "total_r": 14.64,
+      "max_dd_r": 28.12,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 613,
+      "wins": 133,
+      "losses": 350,
+      "hit_rate": 21.7,
+      "profit_factor": 0.95,
+      "avg_r": 0.08,
+      "total_r": 46.62,
+      "max_dd_r": 26.79,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 677,
+      "wins": 238,
+      "losses": 344,
+      "hit_rate": 35.2,
+      "profit_factor": 1.04,
+      "avg_r": 0.03,
+      "total_r": 21.55,
+      "max_dd_r": 24.99,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 677,
+      "wins": 175,
+      "losses": 375,
+      "hit_rate": 25.8,
+      "profit_factor": 0.93,
+      "avg_r": 0.02,
+      "total_r": 15.76,
+      "max_dd_r": 27.15,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 677,
+      "wins": 142,
+      "losses": 384,
+      "hit_rate": 21.0,
+      "profit_factor": 0.92,
+      "avg_r": 0.05,
+      "total_r": 37.21,
+      "max_dd_r": 30.23,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 15,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 501,
+      "wins": 182,
+      "losses": 260,
+      "hit_rate": 36.3,
+      "profit_factor": 1.05,
+      "avg_r": 0.04,
+      "total_r": 21.05,
+      "max_dd_r": 26.03,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 501,
+      "wins": 138,
+      "losses": 278,
+      "hit_rate": 27.5,
+      "profit_factor": 0.99,
+      "avg_r": 0.06,
+      "total_r": 31.71,
+      "max_dd_r": 28.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 501,
+      "wins": 115,
+      "losses": 284,
+      "hit_rate": 23.0,
+      "profit_factor": 1.01,
+      "avg_r": 0.11,
+      "total_r": 55.64,
+      "max_dd_r": 28.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 608,
+      "wins": 215,
+      "losses": 315,
+      "hit_rate": 35.4,
+      "profit_factor": 1.02,
+      "avg_r": 0.03,
+      "total_r": 17.22,
+      "max_dd_r": 29.46,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 608,
+      "wins": 159,
+      "losses": 341,
+      "hit_rate": 26.2,
+      "profit_factor": 0.93,
+      "avg_r": 0.03,
+      "total_r": 17.7,
+      "max_dd_r": 28.12,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 608,
+      "wins": 133,
+      "losses": 347,
+      "hit_rate": 21.9,
+      "profit_factor": 0.96,
+      "avg_r": 0.08,
+      "total_r": 47.44,
+      "max_dd_r": 27.96,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 672,
+      "wins": 238,
+      "losses": 341,
+      "hit_rate": 35.4,
+      "profit_factor": 1.05,
+      "avg_r": 0.04,
+      "total_r": 24.88,
+      "max_dd_r": 24.92,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 672,
+      "wins": 177,
+      "losses": 372,
+      "hit_rate": 26.3,
+      "profit_factor": 0.95,
+      "avg_r": 0.03,
+      "total_r": 21.41,
+      "max_dd_r": 27.15,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 672,
+      "wins": 142,
+      "losses": 382,
+      "hit_rate": 21.1,
+      "profit_factor": 0.93,
+      "avg_r": 0.06,
+      "total_r": 37.61,
+      "max_dd_r": 31.91,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 20,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 491,
+      "wins": 181,
+      "losses": 253,
+      "hit_rate": 36.9,
+      "profit_factor": 1.07,
+      "avg_r": 0.05,
+      "total_r": 25.86,
+      "max_dd_r": 25.03,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 491,
+      "wins": 136,
+      "losses": 272,
+      "hit_rate": 27.7,
+      "profit_factor": 1.0,
+      "avg_r": 0.07,
+      "total_r": 33.02,
+      "max_dd_r": 27.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 491,
+      "wins": 115,
+      "losses": 278,
+      "hit_rate": 23.4,
+      "profit_factor": 1.03,
+      "avg_r": 0.13,
+      "total_r": 61.45,
+      "max_dd_r": 27.29,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 3
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 598,
+      "wins": 214,
+      "losses": 308,
+      "hit_rate": 35.8,
+      "profit_factor": 1.04,
+      "avg_r": 0.04,
+      "total_r": 22.03,
+      "max_dd_r": 28.96,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 598,
+      "wins": 157,
+      "losses": 335,
+      "hit_rate": 26.3,
+      "profit_factor": 0.94,
+      "avg_r": 0.03,
+      "total_r": 19.01,
+      "max_dd_r": 27.12,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 598,
+      "wins": 133,
+      "losses": 341,
+      "hit_rate": 22.2,
+      "profit_factor": 0.98,
+      "avg_r": 0.09,
+      "total_r": 53.24,
+      "max_dd_r": 27.02,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 5
+      },
+      "rr": 2.5
+    },
+    {
+      "trades": 662,
+      "wins": 237,
+      "losses": 334,
+      "hit_rate": 35.8,
+      "profit_factor": 1.06,
+      "avg_r": 0.04,
+      "total_r": 29.69,
+      "max_dd_r": 23.92,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 1.5
+    },
+    {
+      "trades": 662,
+      "wins": 175,
+      "losses": 366,
+      "hit_rate": 26.4,
+      "profit_factor": 0.96,
+      "avg_r": 0.03,
+      "total_r": 22.72,
+      "max_dd_r": 26.15,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.0
+    },
+    {
+      "trades": 662,
+      "wins": 142,
+      "losses": 376,
+      "hit_rate": 21.5,
+      "profit_factor": 0.94,
+      "avg_r": 0.07,
+      "total_r": 43.42,
+      "max_dd_r": 30.91,
+      "params": {
+        "min_atr_impulse": 3.0,
+        "min_pullback_pct": 25,
+        "key_zone_tolerance_pct": 7
+      },
+      "rr": 2.5
+    }
+  ]
+}

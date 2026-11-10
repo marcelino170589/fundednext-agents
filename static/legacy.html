@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>FNL:004 — Dashboard Profesional</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0a0e14;--panel:#11161f;--border:#1f2937;--text:#e6edf3;
+      --muted:#8b949e;--green:#3fb950;--red:#f85149;--yellow:#d29922;--blue:#58a6ff;
+      --purple:#a371f7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;padding:16px}
+h1{font-size:18px;margin-bottom:4px}
+.header{display:flex;justify-content:space-between;padding:12px 16px;
+        background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:16px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--red);
+     display:inline-block;margin-right:6px}
+.dot.on{background:var(--green);box-shadow:0 0 8px var(--green)}
+.grid{display:grid;gap:16px;margin-bottom:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:1fr 1fr}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1000px){.g3,.g2,.g4{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:16px}
+.title{font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+       color:var(--muted);margin-bottom:12px;font-weight:600}
+.metric{font-size:26px;font-weight:700}
+.small{font-size:20px}
+.sub{font-size:12px;color:var(--muted);margin-top:4px}
+.green{color:var(--green)}.red{color:var(--red)}.yellow{color:var(--yellow)}
+.blue{color:var(--blue)}.purple{color:var(--purple)}
+.bar{height:6px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden}
+.fill{height:100%;background:var(--green);transition:width .3s}
+.fill.warn{background:var(--yellow)}.fill.danger{background:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px;color:var(--muted);border-bottom:1px solid var(--border);font-size:11px}
+td{padding:8px;border-bottom:1px solid var(--border)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.badge.long{background:rgba(63,185,80,.15);color:var(--green)}
+.badge.short{background:rgba(248,81,73,.15);color:var(--red)}
+.badge.no{background:rgba(139,148,158,.15);color:var(--muted)}
+.empty{color:var(--muted);text-align:center;padding:16px}
+
+/* ═══ ALERTAS (campana flotante) ═══ */
+.alert-bell {
+  position: fixed; top: 16px; right: 16px;
+  background: var(--panel); border: 2px solid var(--border);
+  border-radius: 50%; width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 24px; z-index: 100;
+  transition: all 0.2s;
+}
+.alert-bell:hover { border-color: var(--blue); }
+.alert-bell.has-alerts {
+  border-color: var(--red);
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(248,81,73,.7); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(248,81,73,0); }
+}
+.alert-count {
+  position: absolute; top: -6px; right: -6px;
+  background: var(--red); color: white; font-size: 11px;
+  border-radius: 12px; padding: 2px 7px; font-weight: bold;
+  border: 2px solid var(--bg);
+}
+
+/* ═══ PANEL DE ALERTAS ═══ */
+.alert-panel {
+  position: fixed; top: 80px; right: 16px; width: 480px;
+  max-height: 80vh; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px; z-index: 99;
+  display: none; box-shadow: 0 10px 40px rgba(0,0,0,.5);
+}
+.alert-panel.open { display: block; }
+.alert-panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.alert-panel-header strong { font-size: 14px; }
+.alert-panel-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.alert-panel-actions button {
+  background: none; border: 1px solid var(--border);
+  color: var(--muted); cursor: pointer; font-size: 10px;
+  padding: 4px 8px; border-radius: 4px;
+}
+.alert-panel-actions button:hover { color: var(--text); border-color: var(--blue); }
+
+.alert-item {
+  padding: 12px; margin-bottom: 10px;
+  border-left: 3px solid var(--border);
+  background: rgba(255,255,255,.03);
+  border-radius: 6px; cursor: pointer;
+  transition: all 0.15s;
+}
+.alert-item:hover { background: rgba(255,255,255,.08); }
+.alert-item.unread { border-left-color: var(--yellow); background: rgba(210,153,34,.08); }
+.alert-item.critical { border-left-color: var(--red); background: rgba(248,81,73,.1); }
+.alert-item.opportunity { border-left-color: var(--purple); background: rgba(163,113,247,.08); }
+
+.alert-item .alert-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.alert-item .alert-symbol {
+  font-weight: 700; font-size: 14px; color: var(--blue);
+}
+.alert-item .alert-direction {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 10px; font-weight: 700; margin-left: 6px;
+}
+.alert-item .alert-direction.long { background: rgba(63,185,80,.2); color: var(--green); }
+.alert-item .alert-direction.short { background: rgba(248,81,73,.2); color: var(--red); }
+.alert-item .alert-ts { color: var(--muted); font-size: 10px; }
+.alert-item .alert-count-badge {
+  background: var(--red); color: white; font-size: 9px;
+  padding: 1px 5px; border-radius: 8px; margin-left: 6px;
+}
+
+.alert-item .alert-data-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px; margin-top: 8px; font-size: 11px;
+}
+.alert-item .alert-data-item {
+  background: rgba(255,255,255,.03);
+  padding: 4px 6px; border-radius: 3px;
+}
+.alert-item .alert-data-item .label {
+  color: var(--muted); font-size: 9px; text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.alert-item .alert-data-item .value {
+  font-weight: 600; font-family: 'Courier New', monospace;
+  font-size: 12px; color: var(--text);
+}
+.alert-item .alert-reason {
+  margin-top: 8px; font-size: 11px; color: var(--muted);
+  font-style: italic;
+}
+
+/* ═══ TOAST ═══ */
+.toast-container {
+  position: fixed; bottom: 20px; right: 20px;
+  z-index: 200; display: flex; flex-direction: column; gap: 8px;
+}
+.toast {
+  background: var(--panel); border: 1px solid var(--border);
+  border-left: 4px solid var(--yellow);
+  border-radius: 6px; padding: 12px 16px; min-width: 300px;
+  max-width: 400px; font-size: 13px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+  animation: slideIn 0.3s ease-out;
+}
+.toast.opportunity { border-left-color: var(--purple); }
+.toast.critical { border-left-color: var(--red); }
+@keyframes slideIn { from { transform: translateX(400px); } to { transform: translateX(0); } }
+.toast-title { font-weight: 600; margin-bottom: 4px; }
+.toast-body { color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>FNL:004 — Dashboard Profesional</h1>
+    <div class="sub" id="upd">esperando…</div>
+  </div>
+  <div class="sub">
+    <span class="dot" id="dot"></span><span id="ea">EA desconectado</span>
+  </div>
+</div>
+
+<button class="alert-bell" id="alert-bell" onclick="toggleAlerts()" title="Alertas">
+  🔔<span class="alert-count" id="alert-count" style="display:none">0</span>
+</button>
+
+<div class="alert-panel" id="alert-panel">
+  <div class="alert-panel-header">
+    <strong>🔔 Alertas</strong>
+    <div class="alert-panel-actions">
+      <button onclick="markAllRead()">Marcar todas leídas</button>
+      <button onclick="requestNotifications()">Activar notificaciones</button>
+      <button onclick="clearAlerts()">Limpiar</button>
+      <button onclick="toggleAlerts()">✕</button>
+    </div>
+  </div>
+  <div id="alerts-list"><div class="empty">Sin alertas</div></div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<div class="grid g4">
+  <div class="card"><div class="title">Equity</div>
+    <div class="metric" id="equity">—</div>
+    <div class="sub" id="pnl">—</div></div>
+  <div class="card"><div class="title">Balance</div>
+    <div class="metric" id="balance">—</div>
+    <div class="sub" id="open-positions">—</div></div>
+  <div class="card"><div class="title">P&L Hoy</div>
+    <div class="metric small" id="daily">—</div>
+    <div class="sub" id="daily-target">/ $100</div></div>
+  <div class="card"><div class="title">P&L Ciclo</div>
+    <div class="metric small" id="ciclo">—</div>
+    <div class="sub" id="ciclo-sub">—</div></div>
+</div>
+
+<div class="grid g2">
+  <div class="card"><div class="title">Consistency (límite 20%)</div>
+    <div class="metric small" id="ratio">—</div>
+    <div class="bar"><div class="fill" id="r-bar"></div></div>
+    <div class="sub" id="ratio-sub">—</div></div>
+  <div class="card"><div class="title">Trailing Drawdown ($2,000)</div>
+    <div class="metric small" id="trail">—</div>
+    <div class="bar"><div class="fill" id="t-bar"></div></div>
+    <div class="sub" id="trail-sub">—</div></div>
+</div>
+
+<div class="grid g2">
+  <div class="card"><div class="title">Pérdida diaria (operativo 2%)</div>
+    <div class="metric small" id="dl">—</div>
+    <div class="bar"><div class="fill" id="dl-bar"></div></div></div>
+  <div class="card"><div class="title">Riesgo abierto (operativo 0.5%)</div>
+    <div class="metric small" id="or">—</div>
+    <div class="bar"><div class="fill" id="or-bar"></div></div></div>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+  <div class="title">Curva de equity</div>
+  <canvas id="eq-chart" style="height:200px"></canvas>
+</div>
+
+<div class="card" id="dil-card" style="display:none;margin-bottom:16px;
+     border:2px solid var(--yellow)">
+  <div class="title" style="color:var(--yellow)">⚠ MODO DILUCIÓN ACTIVO</div>
+  <div class="grid g3" style="margin-top:12px">
+    <div><div class="sub">Objetivo diario</div>
+      <div class="metric small yellow" id="dil-target">—</div></div>
+    <div><div class="sub">Falta diluir</div>
+      <div class="metric small yellow" id="dil-falta">—</div></div>
+    <div><div class="sub">Días estimados</div>
+      <div class="metric small yellow" id="dil-dias">—</div></div>
+  </div>
+</div>
+
+<div class="grid g2">
+  <div class="card"><div class="title">Últimas operaciones</div>
+    <table><thead><tr><th>Hora</th><th>Par</th><th>Dir</th><th>Vol</th><th>PnL</th></tr></thead>
+    <tbody id="trades"><tr><td colspan="5" class="empty">sin datos</td></tr></tbody></table></div>
+  <div class="card"><div class="title">Últimas decisiones</div>
+    <table><thead><tr><th>Hora</th><th>Par</th><th>Op</th><th>Motivo</th></tr></thead>
+    <tbody id="decs"><tr><td colspan="4" class="empty">sin datos</td></tr></tbody></table></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// Utilidades
+// ═══════════════════════════════════════════════════════════════
+const fmt = (n,d=2) => n==null?'—':'$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const num = n => n==null?'—':Number(n).toFixed(2);
+
+const chart = new Chart(document.getElementById('eq-chart'), {
+  type:'line', data:{labels:[],datasets:[{data:[],borderColor:'#58a6ff',
+    backgroundColor:'rgba(88,166,255,.1)',fill:true,tension:0.2,pointRadius:0,borderWidth:2}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{ticks:{color:'#8b949e',maxTicksLimit:6},grid:{color:'#1f2937'}},
+            y:{ticks:{color:'#8b949e'},grid:{color:'#1f2937'}}}}
+});
+
+function bar(id, pct, warn=50, danger=80) {
+  const el = document.getElementById(id);
+  el.style.width = Math.min(pct,100)+'%';
+  el.className = 'fill ' + (pct>=danger?'danger':pct>=warn?'warn':'');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ALERTAS
+// ═══════════════════════════════════════════════════════════════
+let alertsOpen = false;
+let lastUnread = 0;
+let audioCtx = null;
+
+function playBeep(severity) {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    const freqs = { INFO: 600, WARNING: 800, CRITICAL: 1000 };
+    osc.frequency.value = freqs[severity] || 800;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.4);
+    if (severity === 'CRITICAL') {
+      setTimeout(() => playBeep('CRITICAL'), 200);
+      setTimeout(() => playBeep('CRITICAL'), 400);
+    }
+  } catch(e) {}
+}
+
+function toggleAlerts() {
+  alertsOpen = !alertsOpen;
+  document.getElementById('alert-panel').classList.toggle('open', alertsOpen);
+  if (alertsOpen) loadAlerts();
+}
+
+function requestNotifications() {
+  if (Notification.permission === 'default') {
+    Notification.requestPermission().then(p => {
+      if (p === 'granted') showToast('Notificaciones activadas', 'Recibirás alertas del navegador', 'INFO');
+    });
+  } else if (Notification.permission === 'granted') {
+    showToast('Ya están activadas', '', 'INFO');
+  } else {
+    showToast('Bloqueadas', 'Permite las notificaciones en la configuración del navegador', 'WARNING');
+  }
+}
+
+function showToast(title, body, severity='INFO') {
+  const cont = document.getElementById('toast-container');
+  const div = document.createElement('div');
+  div.className = 'toast ' + (severity === 'CRITICAL' ? 'critical' : '');
+  div.innerHTML = `<div class="toast-title">${title}</div><div class="toast-body">${body||''}</div>`;
+  cont.appendChild(div);
+  setTimeout(() => { div.style.opacity = '0'; div.style.transition = 'opacity 0.5s';
+    setTimeout(() => div.remove(), 500); }, 8000);
+}
+
+function renderAlerts(alerts) {
+  const list = document.getElementById('alerts-list');
+  const countEl = document.getElementById('alert-count');
+  const bell = document.getElementById('alert-bell');
+
+  if (!alerts || !alerts.length) {
+    list.innerHTML = '<div class="empty">Sin alertas</div>';
+    countEl.style.display = 'none';
+    bell.classList.remove('has-alerts');
+    lastUnread = 0;
+    return;
+  }
+
+  const unread = alerts.filter(a => !a.leida).length;
+
+  if (unread > 0) {
+    countEl.textContent = unread > 99 ? '99+' : unread;
+    countEl.style.display = 'block';
+    bell.classList.add('has-alerts');
+  } else {
+    countEl.style.display = 'none';
+    bell.classList.remove('has-alerts');
+  }
+
+  if (unread > lastUnread) {
+    const nuevas = alerts.filter(a => !a.leida).slice(0, unread - lastUnread);
+    nuevas.forEach(a => {
+      playBeep(a.severity);
+      if (Notification.permission === 'granted') {
+        new Notification('FNL:004 — ' + a.tipo, {
+          body: a.message,
+          tag: 'alert-' + a.id,
+          requireInteraction: a.severity === 'CRITICAL',
+        });
+      }
+    });
+  }
+  lastUnread = unread;
+
+  list.innerHTML = alerts.map(a => {
+    const sevCls = a.severity === 'CRITICAL' ? 'critical' :
+                   a.tipo === 'opportunity' ? 'opportunity' : '';
+    const unreadCls = a.leida ? '' : 'unread';
+    const data = a.data || {};
+    const count = data.count || 1;
+
+    let header = '';
+    if (a.symbol) {
+      const dirCls = a.direction === 'LONG' ? 'long' : 'short';
+      const dirText = a.direction || '';
+      header = `<span class="alert-symbol">${a.symbol}</span>`;
+      if (dirText) {
+        header += `<span class="alert-direction ${dirCls}">${dirText}</span>`;
+      }
+      if (count > 1) {
+        header += `<span class="alert-count-badge">×${count}</span>`;
+      }
+    }
+
+    let dataGrid = '';
+    const entry = data.entry || data.entrada;
+    const sl = data.sl || data.stop_loss;
+    const tp = data.tp || data.take_profit;
+    const lot = data.lotaje || data.lotage;
+    const rr = data.rr;
+    const score = data.score || data.score_consenso;
+
+    if (entry || sl || tp || lot) {
+      dataGrid = '<div class="alert-data-grid">';
+      if (entry) dataGrid += `<div class="alert-data-item"><div class="label">Entrada</div><div class="value">${entry}</div></div>`;
+      if (sl) dataGrid += `<div class="alert-data-item"><div class="label">SL</div><div class="value">${sl}</div></div>`;
+      if (tp) dataGrid += `<div class="alert-data-item"><div class="label">TP</div><div class="value">${tp}</div></div>`;
+      if (lot) dataGrid += `<div class="alert-data-item"><div class="label">Lotaje</div><div class="value">${lot}</div></div>`;
+      if (rr) dataGrid += `<div class="alert-data-item"><div class="label">R:R</div><div class="value">1:${rr}</div></div>`;
+      if (score) dataGrid += `<div class="alert-data-item"><div class="label">Score</div><div class="value">${score}</div></div>`;
+      dataGrid += '</div>';
+    }
+
+    let reason = '';
+    if (data.macro && data.macro.razon) {
+      reason = `<div class="alert-reason">📝 ${data.macro.razon.slice(0, 100)}</div>`;
+    }
+
+    return `<div class="alert-item ${sevCls} ${unreadCls}" onclick="markRead(${a.id})">
+      <div class="alert-header">
+        <div>${header || a.tipo}</div>
+        <div class="alert-ts">${a.ts.slice(11,19)}</div>
+      </div>
+      ${dataGrid}
+      ${reason}
+    </div>`;
+  }).join('');
+}
+
+async function loadAlerts() {
+  try {
+    const r = await fetch('/api/alerts?limit=30');
+    const alerts = await r.json();
+    renderAlerts(alerts);
+  } catch(e) {}
+}
+
+async function markRead(id) {
+  try {
+    await fetch(`/api/alerts/${id}/read`, {method: 'POST'});
+    loadAlerts();
+  } catch(e) {}
+}
+
+async function markAllRead() {
+  try {
+    await fetch('/api/alerts/read-all', {method: 'POST'});
+    loadAlerts();
+  } catch(e) {}
+}
+
+async function clearAlerts() {
+  try {
+    await fetch('/api/alerts/clear', {method: 'POST'});
+    loadAlerts();
+  } catch(e) {}
+}
+
+setInterval(loadAlerts, 3000);
+loadAlerts();
+
+// ═══════════════════════════════════════════════════════════════
+// Render principal
+// ═══════════════════════════════════════════════════════════════
+function render(d) {
+  const {state, stats, profit, trades, decisions, equity, alerts} = d;
+
+  const eq = state.equity ?? 0;
+  document.getElementById('equity').textContent = fmt(eq);
+  const pnl = eq - 50000;
+  document.getElementById('pnl').textContent = (pnl>=0?'+':'')+fmt(pnl);
+  document.getElementById('pnl').className = 'sub '+(pnl>=0?'green':'red');
+  document.getElementById('balance').textContent = fmt(state.balance ?? 0);
+  document.getElementById('open-positions').textContent =
+    (state.open_positions ?? 0) + ' posiciones abiertas';
+
+  if (profit) {
+    document.getElementById('daily').textContent = fmt(profit.daily_pnl);
+    document.getElementById('ciclo').textContent = fmt(profit.total_pnl_ciclo);
+    document.getElementById('ciclo-sub').textContent = 'mejor: '+fmt(profit.best_day_pnl);
+
+    const rc = profit.ratio_consistencia;
+    document.getElementById('ratio').textContent = rc.toFixed(1)+'%';
+    document.getElementById('ratio').className = 'metric small ' +
+      (rc<15?'green':rc<20?'yellow':'red');
+    bar('r-bar', rc*5, 75, 100);
+    document.getElementById('ratio-sub').textContent = profit.cumple_20pct ?
+      '✅ Cumples 20%' : `❌ Faltan ${fmt(profit.falta_para_20pct)}`;
+
+    const peak = profit.peak_equity, floor = profit.trailing_floor;
+    const distToFloor = eq - floor;
+    const maxDist = peak - floor;
+    document.getElementById('trail').textContent = fmt(distToFloor)+' / '+fmt(maxDist||2000);
+    document.getElementById('trail').className = 'metric small ' +
+      (distToFloor > 1500 ? 'green' : distToFloor > 1000 ? 'yellow' : 'red');
+    bar('t-bar', maxDist > 0 ? (1 - distToFloor/maxDist)*100 : 0, 50, 75);
+    document.getElementById('trail-sub').textContent =
+      `peak ${fmt(peak)} · floor ${fmt(floor)}`;
+
+    const dilCard = document.getElementById('dil-card');
+    if (profit.dilution?.active) {
+      dilCard.style.display = 'block';
+      document.getElementById('dil-target').textContent = fmt(profit.dilution.current_daily_target);
+      document.getElementById('dil-falta').textContent = fmt(profit.dilution.falta);
+      document.getElementById('dil-dias').textContent = profit.dilution.dias_estimados.toFixed(1);
+    } else {
+      dilCard.style.display = 'none';
+    }
+  }
+
+  const dl = state.perdida_hoy ?? 0, dlim = 50000 * 0.02;
+  document.getElementById('dl').textContent = fmt(dl)+' / '+fmt(dlim);
+  bar('dl-bar', (dl/dlim)*100);
+
+  const orr = state.riesgo_abierto ?? 0, olim = 50000 * 0.005;
+  document.getElementById('or').textContent = fmt(orr)+' / '+fmt(olim);
+  bar('or-bar', (orr/olim)*100);
+
+  document.getElementById('dot').className = 'dot ' + (state.ea_alive?'on':'');
+  document.getElementById('ea').textContent = state.ea_alive?'EA online':'EA offline';
+  document.getElementById('ea').className = 'sub ' + (state.ea_alive?'green':'red');
+
+  if (equity?.length) {
+    chart.data.labels = equity.map(e=>e.ts.slice(11,16));
+    chart.data.datasets[0].data = equity.map(e=>e.equity);
+    chart.update('none');
+  }
+
+  const tb = document.getElementById('trades');
+  if (trades?.length) {
+    tb.innerHTML = trades.map(t=>{
+      const c = (t.pnl??0)>=0?'green':'red';
+      const dir = t.direction==='LONG'?'long':'short';
+      return `<tr><td>${t.ts_open.slice(11,16)}</td><td>${t.symbol}</td>
+        <td><span class="badge ${dir}">${t.direction}</span></td>
+        <td>${num(t.volume)}</td><td class="${c}">${fmt(t.pnl)}</td></tr>`;
+    }).join('');
+  }
+
+  const db = document.getElementById('decs');
+  if (decisions?.length) {
+    db.innerHTML = decisions.map(d=>{
+      const op = d.operar?'<span class="badge long">sí</span>'
+                         :'<span class="badge no">no</span>';
+      return `<tr><td>${d.ts.slice(11,16)}</td><td>${d.symbol}</td>
+        <td>${op}</td><td style="font-size:11px">${(d.motivo||'—').slice(0,40)}</td></tr>`;
+    }).join('');
+  }
+
+  if (alerts) renderAlerts(alerts);
+
+  document.getElementById('upd').textContent = 'actualizado: '+new Date().toLocaleTimeString();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// WebSocket
+// ═══════════════════════════════════════════════════════════════
+const proto = location.protocol==='https:'?'wss':'ws';
+const ws = new WebSocket(`${proto}://${location.host}/ws`);
+ws.onopen = () => { document.getElementById('dot').className='dot on'; };
+ws.onclose = () => { document.getElementById('dot').className='dot'; setTimeout(()=>location.reload(),3000); };
+ws.onmessage = e => { try { const d=JSON.parse(e.data); if(d.type==='snapshot') render(d); } catch(_){} };
+</script>
+</body>
+</html>

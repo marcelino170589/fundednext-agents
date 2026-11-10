@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070b12">
+<title>FNL:004 · Command Center</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="manifest" href="/static/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/static/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FNL:004">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">FN</div>
+      <div class="brand-copy">
+        <strong>FNL:004</strong>
+        <span>Command Center</span>
+      </div>
+    </div>
+
+    <nav class="nav" id="main-nav" aria-label="Navegación principal">
+      <button class="nav-item is-active" data-view="overview"><span class="nav-ico">◈</span><span>Resumen</span><kbd>1</kbd></button>
+      <button class="nav-item" data-view="news"><span class="nav-ico">◉</span><span>Noticias</span><kbd>2</kbd></button>
+      <button class="nav-item" data-view="opportunities"><span class="nav-ico">◎</span><span>Oportunidades</span><kbd>3</kbd></button>
+      <button class="nav-item" data-view="journal"><span class="nav-ico">▤</span><span>Journal</span><kbd>4</kbd></button>
+      <button class="nav-item" data-view="market"><span class="nav-ico">◫</span><span>Mercado</span><kbd>5</kbd></button>
+      <button class="nav-item" data-view="system"><span class="nav-ico">⚙</span><span>Sistema</span><kbd>6</kbd></button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="mini-status" id="sidebar-status">
+        <span class="dot dot-muted" id="sidebar-dot"></span>
+        <span id="sidebar-status-text">Conectando…</span>
+      </div>
+      <a class="side-link" href="/legacy" target="_blank" rel="noopener">Dashboard clásico ↗</a>
+      <button class="side-link install-btn" id="install-btn" hidden>Instalar app ↓</button>
+      <div class="side-note">Modo manual · sin ejecución automática</div>
+    </div>
+  </aside>
+
+  <div class="main-shell">
+    <header class="topbar">
+      <div class="page-heading">
+        <div class="eyebrow" id="page-eyebrow">FNL:004 · Instant 50K</div>
+        <h1 id="page-title">Resumen</h1>
+        <p id="page-subtitle">Estado de cuenta, riesgo y señales del ciclo.</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="clock" aria-label="Reloj">
+          <strong id="clock-local">--:--:--</strong>
+          <span id="clock-utc">UTC --:--</span>
+        </div>
+        <button class="icon-btn" id="sound-btn" title="Sonido de alertas" aria-label="Alternar sonido">♪</button>
+        <button class="btn btn-ghost" id="refresh-btn" title="Actualizar datos (R)">
+          <span class="btn-ico" id="refresh-ico">↻</span><span class="hide-sm">Actualizar</span>
+        </button>
+        <button class="icon-btn bell-btn" id="alerts-btn" title="Alertas" aria-label="Abrir alertas">
+          ◔<span class="badge-count" id="alerts-count" hidden>0</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ═══════════════ RESUMEN ═══════════════ -->
+      <section class="view is-active" id="view-overview" data-view="overview">
+        <div id="overview-banner"></div>
+
+        <div class="grid hero-grid">
+          <article class="card hero-card">
+            <div class="hero-top">
+              <div>
+                <div class="eyebrow">Equity de la cuenta</div>
+                <div class="hero-equity" id="hero-equity">—</div>
+                <div class="hero-delta" id="hero-delta">—</div>
+              </div>
+              <div class="hero-side">
+                <span class="pill" id="ea-pill"><span class="dot dot-muted"></span> EA</span>
+                <span class="pill pill-quiet" id="mode-pill">Manual</span>
+              </div>
+            </div>
+            <canvas id="hero-spark" class="spark" height="72" aria-label="Sparkline de equity"></canvas>
+            <div class="hero-stats" id="hero-stats"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div><h2>Riesgo del ciclo</h2><p>Límites operativos FNL:004</p></div>
+              <span class="tiny muted" id="risk-updated">—</span>
+            </div>
+            <div class="gauge-grid" id="risk-gauges"></div>
+          </article>
+        </div>
+
+        <div class="grid kpi-grid" id="overview-kpis"></div>
+
+        <div class="grid split-main">
+          <article class="card chart-card">
+            <div class="card-head">
+              <div><h2>Curva de equity</h2><p>Snapshots del journal</p></div>
+              <span class="tiny muted" id="equity-range">—</span>
+            </div>
+            <div class="chart-wrap"><canvas id="equity-chart" aria-label="Curva de equity"></canvas></div>
+            <div class="empty" id="equity-empty" hidden>Sin snapshots de equity todavía.</div>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div><h2>Próximos eventos</h2><p>Alto impacto · tu ventana de noticias</p></div>
+              <button class="link-btn" data-goto="news">Ver todo</button>
+            </div>
+            <div id="next-events" class="list-stack"></div>
+          </article>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <div class="card-head">
+              <div><h2>Oportunidades activas</h2><p>Últimas 24 h del cazador</p></div>
+              <button class="link-btn" data-goto="opportunities">Abrir</button>
+            </div>
+            <div id="overview-opps" class="list-stack"></div>
+          </article>
+          <article class="card">
+            <div class="card-head">
+              <div><h2>Estado del sistema</h2><p>Servicios y fuentes</p></div>
+              <button class="link-btn" data-goto="system">Diagnóstico</button>
+            </div>
+            <div id="overview-health" class="health-list"></div>
+          </article>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <div class="card-head">
+              <div><h2>Decisiones recientes</h2><p>Consenso de 9 capas</p></div>
+              <button class="link-btn" data-goto="journal">Journal</button>
+            </div>
+            <div id="overview-decisions"></div>
+          </article>
+          <article class="card">
+            <div class="card-head">
+              <div><h2>Alertas recientes</h2><p>Dashboard local</p></div>
+              <button class="link-btn" id="overview-alerts-open">Abrir panel</button>
+            </div>
+            <div id="overview-alerts" class="list-stack"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════════════ NOTICIAS ═══════════════ -->
+      <section class="view" id="view-news" data-view="news">
+        <div class="toolbar card">
+          <div class="toolbar-group">
+            <label class="field"><span>Símbolo</span><select id="news-symbol"></select></label>
+            <label class="field"><span>Impacto</span>
+              <select id="news-impact"><option value="all">Todos</option><option value="high">Alto</option><option value="medium">Medio</option></select>
+            </label>
+            <label class="field grow"><span>Buscar</span><input id="news-search" type="search" placeholder="Evento, divisa o titular…"></label>
+            <label class="check"><input type="checkbox" id="news-only-symbol"> Solo mi activo</label>
+          </div>
+          <div class="toolbar-group">
+            <span class="tiny muted" id="news-updated">—</span>
+            <button class="btn btn-primary" id="news-refresh">Actualizar fuentes</button>
+          </div>
+        </div>
+
+        <div id="news-blackout"></div>
+
+        <div class="news-layout">
+          <div class="news-main">
+            <article class="card">
+              <div class="card-head">
+                <div><h2>Calendario económico</h2><p id="calendar-sub">Próximas 72 h · hora local</p></div>
+                <span class="pill pill-quiet" id="calendar-count">0 eventos</span>
+              </div>
+              <div id="calendar-list" class="timeline"></div>
+            </article>
+
+            <article class="card">
+              <div class="card-head">
+                <div><h2>Titulares</h2><p id="headlines-sub">Google News RSS · relevancia para el activo</p></div>
+                <div class="segmented" id="headline-filter">
+                  <button class="is-active" data-sent="all">Todos</button>
+                  <button data-sent="positive">Alcistas</button>
+                  <button data-sent="negative">Bajistas</button>
+                </div>
+              </div>
+              <div id="headlines-list" class="headlines"></div>
+            </article>
+          </div>
+
+          <aside class="news-side">
+            <article class="card" id="sentiment-card"></article>
+
+            <article class="card">
+              <div class="card-head"><div><h2>Pipeline de noticias</h2><p>De la fuente al veto</p></div></div>
+              <div id="news-pipeline" class="pipeline"></div>
+            </article>
+
+            <article class="card">
+              <div class="card-head"><div><h2>Salud de fuentes</h2><p>Última actualización y latencia</p></div></div>
+              <div id="news-health" class="health-list"></div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ═══════════════ OPORTUNIDADES ═══════════════ -->
+      <section class="view" id="view-opportunities" data-view="opportunities">
+        <div class="toolbar card">
+          <div class="toolbar-group">
+            <label class="field grow"><span>Buscar</span><input id="opps-search" type="search" placeholder="Símbolo o estrategia…"></label>
+            <label class="field"><span>Dirección</span><select id="opps-direction"><option value="all">Todas</option><option value="LONG">LONG</option><option value="SHORT">SHORT</option></select></label>
+            <label class="field"><span>Confluencia mín.</span><input id="opps-minconf" type="number" min="0" max="10" step="1" value="0"></label>
+          </div>
+          <div class="toolbar-group">
+            <span class="tiny muted" id="opps-updated">—</span>
+            <button class="btn btn-ghost" id="opps-refresh">Actualizar</button>
+          </div>
+        </div>
+
+        <div class="grid kpi-grid" id="opps-kpis"></div>
+        <div class="opps-grid" id="opps-grid"></div>
+
+        <div class="grid two">
+          <article class="card">
+            <div class="card-head"><div><h2>Señales registradas</h2><p>Consenso que superó las 9 capas</p></div><span class="pill pill-quiet" id="signals-count">0</span></div>
+            <div id="signals-table"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><div><h2>Alertas de oportunidad</h2><p>Historial del cazador</p></div></div>
+            <div id="opps-alerts" class="list-stack"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════════════ JOURNAL ═══════════════ -->
+      <section class="view" id="view-journal" data-view="journal">
+        <div class="grid kpi-grid" id="journal-kpis"></div>
+
+        <div class="grid split-main">
+          <article class="card chart-card">
+            <div class="card-head">
+              <div><h2>Equity del journal</h2><p>Balance y equity por snapshot</p></div>
+              <div class="toolbar-group compact">
+                <button class="btn tiny-btn" id="journal-export">Exportar CSV</button>
+              </div>
+            </div>
+            <div class="chart-wrap"><canvas id="journal-chart" aria-label="Equity del journal"></canvas></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><div><h2>Vetos por capa</h2><p>Dónde se frena el consenso</p></div></div>
+            <div id="journal-layers" class="layer-list"></div>
+          </article>
+        </div>
+
+        <article class="card">
+          <div class="card-head">
+            <div><h2>Decisiones</h2><p>Haz clic en una fila para ver el razonamiento de los agentes</p></div>
+            <div class="toolbar-group compact">
+              <input id="journal-search" type="search" placeholder="Filtrar símbolo o motivo…">
+              <select id="journal-filter"><option value="all">Todas</option><option value="yes">Solo operar</option><option value="no">Solo vetos</option></select>
+            </div>
+          </div>
+          <div id="decisions-table" class="table-wrap"></div>
+        </article>
+
+        <div class="grid two">
+          <article class="card">
+            <div class="card-head"><div><h2>Trades</h2><p>Registro manual/MT5</p></div></div>
+            <div id="trades-table" class="table-wrap"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><div><h2>Alertas del journal</h2><p>Historial completo</p></div><button class="link-btn" id="journal-alerts-export">CSV</button></div>
+            <div id="journal-alerts" class="list-stack scroll-box"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════════════ MERCADO ═══════════════ -->
+      <section class="view" id="view-market" data-view="market">
+        <div class="toolbar card">
+          <div class="toolbar-group">
+            <label class="field"><span>Símbolo</span><select id="market-symbol"></select></label>
+            <div class="tf-group" id="market-tfs"></div>
+          </div>
+          <div class="toolbar-group">
+            <span class="tiny muted" id="market-updated">—</span>
+            <button class="btn btn-ghost" id="market-refresh">Cargar</button>
+          </div>
+        </div>
+
+        <div id="market-stale"></div>
+        <div class="grid kpi-grid" id="market-summary"></div>
+
+        <article class="card chart-card">
+          <div class="card-head"><div><h2 id="market-title">XAUUSD · H1</h2><p>Datos históricos CSV · no es precio en vivo</p></div><span class="pill pill-quiet" id="market-source">—</span></div>
+          <div class="chart-wrap tall"><canvas id="market-chart" aria-label="Velas"></canvas></div>
+        </article>
+
+        <div class="grid two">
+          <article class="card">
+            <div class="card-head"><div><h2>Últimas velas</h2><p id="market-table-sub">—</p></div></div>
+            <div id="market-table" class="table-wrap"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><div><h2>Backtests</h2><p>Resultados guardados en data/</p></div></div>
+            <div id="backtests-grid" class="list-stack"></div>
+          </article>
+        </div>
+
+        <article class="card">
+          <div class="card-head"><div><h2>Catálogo de estrategias</h2><p>9 estrategias + HTF + MTF</p></div></div>
+          <div id="strategies-table" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <!-- ═══════════════ SISTEMA ═══════════════ -->
+      <section class="view" id="view-system" data-view="system">
+        <div class="grid kpi-grid" id="system-cards"></div>
+
+        <div class="grid split-main">
+          <article class="card">
+            <div class="card-head"><div><h2>Configuración operativa</h2><p>Valores efectivos · sin claves</p></div><button class="link-btn" id="system-reload">Recargar</button></div>
+            <div id="config-table" class="table-wrap"></div>
+          </article>
+          <article class="card">
+            <div class="card-head"><div><h2>Auditoría de noticias</h2><p>Qué se corrigió en el flujo</p></div></div>
+            <div id="analysis-panel" class="analysis-list"></div>
+          </article>
+        </div>
+
+        <article class="card">
+          <div class="card-head">
+            <div><h2>Logs</h2><p>Últimas líneas de los servicios</p></div>
+            <div class="toolbar-group compact">
+              <select id="log-service"><option value="orchestrator">Orquestador</option><option value="htf">HTF</option><option value="api">API</option><option value="orchestrator.log">Orquestador (log)</option></select>
+              <select id="log-lines"><option>100</option><option selected>200</option><option>400</option><option>800</option></select>
+              <button class="btn btn-ghost" id="log-refresh">Cargar</button>
+            </div>
+          </div>
+          <pre id="log-output" class="log-output" tabindex="0">Selecciona un servicio y pulsa Cargar.</pre>
+        </article>
+
+        <article class="card">
+          <div class="card-head"><div><h2>Arquitectura</h2><p>Resumen del proyecto</p></div></div>
+          <div class="arch-grid">
+            <div class="arch-node"><strong>MT5 · EA</strong><span>Publica D1/H4/H1/M15/M5, heartbeat y estado. No ejecuta órdenes.</span></div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node"><strong>Orquestador</strong><span>6 agentes + 9 estrategias + consenso de 9 capas.</span></div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node"><strong>Noticias</strong><span>Calendario + titulares + sentimiento + veto ±15 min.</span></div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node"><strong>Dashboard</strong><span>Señales, journal SQLite y alertas locales. Ejecución manual.</span></div>
+          </div>
+          <p class="disclaimer">Herramienta de análisis y filtrado. No es una máquina de hacer dinero ni asesoría financiera. El trader ejecuta manualmente en MT5.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="statusbar">
+      <div class="status-item"><span class="dot" id="status-ws-dot"></span><span id="status-ws">WebSocket</span></div>
+      <div class="status-item"><span class="dot dot-muted" id="status-ea-dot"></span><span id="status-ea">EA</span></div>
+      <div class="status-item"><span class="dot dot-muted" id="status-news-dot"></span><span id="status-news">Noticias</span></div>
+      <div class="status-item"><span class="muted">Actualizado</span><span id="status-last">—</span></div>
+      <div class="status-spacer"></div>
+      <div class="status-item"><span class="muted">v2.0</span><a href="/legacy" target="_blank" rel="noopener">legacy</a></div>
+    </footer>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+<aside class="drawer" id="alert-drawer" aria-hidden="true" aria-label="Panel de alertas">
+  <header class="drawer-head">
+    <div><h2>Alertas</h2><p id="drawer-sub">—</p></div>
+    <button class="icon-btn" id="drawer-close" aria-label="Cerrar">✕</button>
+  </header>
+  <div class="drawer-actions">
+    <button class="btn tiny-btn" id="alerts-read-all">Marcar leídas</button>
+    <button class="btn tiny-btn" id="alerts-clear">Limpiar leídas</button>
+    <button class="btn tiny-btn" id="notify-btn">Notificaciones</button>
+  </div>
+  <div class="drawer-body" id="drawer-alerts"></div>
+</aside>
+
+<div class="modal-root" id="modal-root" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <header class="modal-head">
+      <div><h2 id="modal-title">Detalle</h2><p id="modal-sub">—</p></div>
+      <button class="icon-btn" data-close-modal aria-label="Cerrar">✕</button>
+    </header>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
