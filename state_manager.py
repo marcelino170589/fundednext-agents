@@ -6,8 +6,9 @@ import time
 from datetime import datetime, date
 from config import INITIAL_BALANCE
 
-STATE_FILE = "logs/state.json"
-HEARTBEAT_FILE = "logs/heartbeat.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATE_FILE = os.path.join(BASE_DIR, "logs", "state.json")
+HEARTBEAT_FILE = os.path.join(BASE_DIR, "logs", "heartbeat.json")
 
 
 def _default():
@@ -24,7 +25,7 @@ def _default():
 
 
 def load() -> dict:
-    os.makedirs("logs", exist_ok=True)
+    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
     if not os.path.exists(STATE_FILE):
         return _default()
     try:
@@ -41,7 +42,7 @@ def load() -> dict:
 
 
 def save(st: dict):
-    os.makedirs("logs", exist_ok=True)
+    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
     with open(STATE_FILE, "w") as f:
         json.dump(st, f, indent=2)
 
@@ -60,7 +61,7 @@ def update_from_mt5(msg: dict):
 
 
 def registrar_heartbeat(msg: dict):
-    os.makedirs("logs", exist_ok=True)
+    os.makedirs(os.path.dirname(HEARTBEAT_FILE), exist_ok=True)
     data = {
         "ts": time.time(),
         "account": msg.get("account"),

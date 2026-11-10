@@ -256,6 +256,7 @@ Limitaciones de la verificación:
 | `docs/ESTRATEGIA_TRULLAS.md` | Reglas, fuentes, límites y validación pendiente. |
 | `journal.py` | Helpers de decisión, señales, resumen y conteos. |
 | `notifier.py` | Telegram completo: cola, chunks, reintentos, rate-limit y deduplicación. |
+| `ea_monitor.py` | Monitor ZMQ independiente para que el dashboard vea el EA aunque el orquestador esté detenido. |
 | `static/manifest.webmanifest`, `static/sw.js`, `static/icon-*.png` | PWA instalable. |
 | `docs/MOVIL_Y_MONETIZACION.md` | APK, PWA, licencias y monetización. |
 | `api_server.py` | API v2 y estáticos. |

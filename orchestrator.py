@@ -33,6 +33,7 @@ from notifier import (start as start_notifier, stop as stop_notifier,
                        notify, notify_signal_local, notify_opportunity_local,
                        notify_ea_status, notify_risk_alert,
                        notify_daily_summary)
+from ea_monitor import start as start_ea_monitor
 import journal
 
 log = logging.getLogger("orchestrator")
@@ -309,6 +310,9 @@ async def escanear_oportunidades(profit_tracker: ProfitTracker):
 async def main_loop():
     journal.init_db()
     start_notifier()
+    # Mantiene el heartbeat fresco durante los 15 min de espera. Sin esto,
+    # el dashboard marcaba el EA como desconectado aunque siguiera publicando.
+    start_ea_monitor()
     sub = StateSubscriber()
     profit_tracker = ProfitTracker.load("default", INITIAL_BALANCE)
     await asyncio.sleep(2)

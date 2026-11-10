@@ -6,7 +6,8 @@ import os
 from datetime import datetime, date, timedelta
 from contextlib import contextmanager
 
-DB_PATH = "data/journal.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "data", "journal.db")
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS decisions (

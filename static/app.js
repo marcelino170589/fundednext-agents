@@ -557,9 +557,29 @@
     renderChrome();
   }
 
+  function eaStatusInfo() {
+    const state = Store.state || {};
+    const health = Store.health || {};
+    const alive = Boolean(state.ea_alive);
+    const hbAge = health.ea?.heartbeat_age_sec
+      ?? (state.last_heartbeat?.ts ? Math.max(0, Math.floor(Date.now() / 1000 - state.last_heartbeat.ts)) : null);
+    const monitor = health.ea?.monitor || {};
+    if (alive) {
+      return { alive: true, label: 'EA online', cls: 'pill-green', dot: '', value: 'online', status: 'ok', age: hbAge };
+    }
+    if (hbAge != null) {
+      return { alive: false, label: 'EA sin heartbeat', cls: 'pill-amber', dot: 'dot-amber', value: 'sin heartbeat', status: 'warn', age: hbAge };
+    }
+    if (monitor.running) {
+      return { alive: false, label: 'EA sin datos ZMQ', cls: 'pill-amber', dot: 'dot-amber', value: 'sin datos ZMQ', status: 'warn', age: null };
+    }
+    return { alive: false, label: 'EA offline', cls: 'pill-red', dot: 'dot-red', value: 'offline', status: 'error', age: null };
+  }
+
   function renderChrome() {
     const state = Store.state || {};
     const ea = Boolean(state.ea_alive);
+    const eaInfo = eaStatusInfo();
     const news = Store.news || {};
     const sources = (news.health && news.health.sources) || {};
     const calendar = sources.calendar || {};
@@ -568,8 +588,8 @@
 
     const eaPill = $('ea-pill');
     if (eaPill) {
-      eaPill.className = 'pill ' + (ea ? 'pill-green' : 'pill-red');
-      eaPill.innerHTML = `<span class="dot ${ea ? '' : 'dot-red'}"></span> ${ea ? 'EA online' : 'EA offline'}`;
+      eaPill.className = 'pill ' + eaInfo.cls;
+      eaPill.innerHTML = `<span class="dot ${eaInfo.dot}"></span> ${eaInfo.label}`;
     }
     const modePill = $('mode-pill');
     if (modePill) modePill.textContent = 'Manual';
@@ -584,9 +604,9 @@
     if (drawerSub) drawerSub.textContent = `${count} sin leer · ${Store.alerts.length} recientes`;
 
     const statusEA = $('status-ea');
-    if (statusEA) statusEA.textContent = ea ? 'EA online' : 'EA offline';
+    if (statusEA) statusEA.textContent = eaInfo.label;
     const dotEA = $('status-ea-dot');
-    if (dotEA) dotEA.className = 'dot ' + (ea ? '' : 'dot-muted');
+    if (dotEA) dotEA.className = 'dot ' + (eaInfo.dot || 'dot-muted');
 
     const newsStatus = calendar.status === 'ok' ? 'Noticias OK' : calendar.status === 'stale' ? 'Noticias en caché' : 'Noticias sin datos';
     const statusNews = $('status-news');
@@ -882,11 +902,11 @@
     const sources = (news.health && news.health.sources) || {};
     const calendar = sources.calendar || {};
     const google = sources.google_news || {};
-    const ea = Boolean(Store.state?.ea_alive);
+    const eaInfo = eaStatusInfo();
     const orchAge = files.orchestrator_log?.age_sec;
     const htf = Object.keys((Store.htf && Store.htf.symbols) || {}).length;
     const rows = [
-      ['EA / MT5', ea ? 'online' : 'offline', ea ? 'ok' : 'error'],
+      ['EA / MT5', eaInfo.value + (eaInfo.age != null ? ` · ${timeAgo(new Date(Date.now() - eaInfo.age * 1000))}` : ''), eaInfo.status],
       ['Orquestador', orchAge == null ? 'sin log' : timeAgo(new Date(Date.now() - orchAge * 1000)), orchAge != null && orchAge < 1200 ? 'ok' : 'warn'],
       ['Calendario', calendar.status === 'ok' ? `${calendar.count || 0} eventos` : statusText(calendar.status), calendar.status],
       ['Titulares', google.status === 'ok' ? `${google.count || 0} titulares` : statusText(google.status), google.status],
@@ -1837,16 +1857,27 @@
     const calendar = sources.calendar || {};
     const google = sources.google_news || {};
     const cards = $('system-cards');
+    const eaInfo = eaStatusInfo();
+    const apiOk = health.api?.status === 'ok';
+    const monitor = health.ea?.monitor || {};
     if (cards) {
       cards.innerHTML = [
-        ['API', health.status === 'ok' ? 'OK' : 'degradado', health.status === 'ok' ? 'green' : 'amber', `uptime ${Math.floor((health.uptime_sec || 0) / 60)} min`],
-        ['EA / MT5', health.ea?.alive ? 'online' : 'offline', health.ea?.alive ? 'green' : 'red', health.ea?.heartbeat_age_sec != null ? `hb ${timeAgo(new Date(Date.now() - health.ea.heartbeat_age_sec * 1000))}` : 'sin heartbeat'],
+        ['API', apiOk ? 'OK' : 'degradada', apiOk ? 'green' : 'red', `uptime ${Math.floor((health.api?.uptime_sec || health.uptime_sec || 0) / 60)} min`],
+        ['EA / MT5', eaInfo.value, eaInfo.status === 'ok' ? 'green' : eaInfo.status === 'warn' ? 'amber' : 'red',
+          eaInfo.age != null ? `hb ${timeAgo(new Date(Date.now() - eaInfo.age * 1000))}` : (monitor.running ? 'monitor ZMQ escuchando' : 'sin heartbeat')],
         ['Calendario', statusText(calendar.status), calendar.status === 'ok' ? 'green' : 'amber', `${calendar.count || 0} eventos`],
         ['Titulares', statusText(google.status), google.status === 'ok' ? 'green' : 'amber', `${google.count || 0} items`],
         ['Journal', String(db.decisions ?? 0), 'blue', `${db.alerts ?? 0} alertas · ${db.equity_snapshots ?? 0} snapshots`],
         ['Orquestador', files.orchestrator_log?.age_sec != null ? timeAgo(new Date(Date.now() - files.orchestrator_log.age_sec * 1000)) : '—', files.orchestrator_log?.age_sec < 1200 ? 'green' : 'amber', 'último log'],
         ['Telegram', health.telegram?.enabled ? 'activo' : health.telegram?.configured ? 'desactivado' : 'sin configurar', health.telegram?.enabled ? 'green' : 'amber', `${health.telegram?.sent ?? 0} enviados · ${health.telegram?.queue ?? 0} en cola`],
       ].map(([k, v, cls, s]) => `<article class="card kpi"><div class="k">${esc(k)}</div><div class="v ${cls}" style="font-size:17px">${esc(v)}</div><div class="s">${esc(s)}</div></article>`).join('');
+    }
+    const banner = $('system-banner');
+    if (banner) {
+      const reasons = health.status_reasons || [];
+      banner.innerHTML = reasons.length
+        ? `<div class="banner banner-warning"><div class="banner-ico">⚠</div><div><div class="banner-title">Estado del sistema: ${esc(health.status || 'degraded')}</div><div class="banner-text">${reasons.map((reason) => `• ${esc(reason)}`).join('<br>')}</div></div></div>`
+        : '<div class="banner banner-info"><div class="banner-ico">✓</div><div><div class="banner-title">Sistema operativo</div><div class="banner-text">API, EA y fuentes de noticias sin incidencias reportadas.</div></div></div>';
     }
     renderConfigTable();
     renderAnalysis();

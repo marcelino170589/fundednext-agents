@@ -26,6 +26,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
+import ea_monitor
 import journal
 import news_feed
 import notifier
@@ -70,6 +71,8 @@ mgr = Manager()
 @app.on_event("startup")
 async def _startup():
     journal.init_db()
+    # El EA puede estar publicando aunque el orquestador esté detenido.
+    ea_monitor.start()
     # Calienta calendario/titulares en segundo plano; la API responde ya.
     news_feed.warm_up(background=True)
 
@@ -151,21 +154,41 @@ def _health_payload() -> dict:
     calendar_status = news["sources"].get("calendar", {}).get("status")
     news_ok = calendar_status == "ok"
     ea_ok = bool(state.get("ea_alive"))
-    status = "ok" if (ea_ok and news_ok) else "degraded"
+    heartbeat_age = (
+        max(0, int(time.time() - float(heartbeat.get("ts", 0))))
+        if heartbeat.get("ts") else None
+    )
+    reasons = []
+    if not ea_ok:
+        reasons.append(
+            "EA sin heartbeat reciente: revisa ZMQ 5556, que el orquestador "
+            "esté corriendo o que el EA publique estado"
+        )
+    if not news_ok:
+        reasons.append(f"Calendario de noticias en estado {calendar_status or 'desconocido'}")
+    status = "ok" if not reasons else "degraded"
     return {
+        # `status` es el estado global del sistema; `api.status` es la salud
+        # de este proceso y no debe degradarse porque el EA esté desconectado.
         "status": status,
+        "api": {
+            "status": "ok",
+            "name": "API FNL:004",
+            "uptime_sec": int(time.time() - START_TS),
+            "version": APP_VERSION,
+        },
+        "status_reasons": reasons,
         "version": APP_VERSION,
         "now_utc": datetime.now(timezone.utc).isoformat(),
         "uptime_sec": int(time.time() - START_TS),
         "ea": {
             "alive": ea_ok,
-            "heartbeat_age_sec": (
-                max(0, int(time.time() - float(heartbeat.get("ts", 0))))
-                if heartbeat.get("ts") else None
-            ),
+            "heartbeat_age_sec": heartbeat_age,
             "account": heartbeat.get("account"),
             "equity": state.get("equity"),
             "balance": state.get("balance"),
+            "last_seen": heartbeat.get("iso"),
+            "monitor": ea_monitor.get_status(),
         },
         "news": news,
         "telegram": notifier.get_status(),

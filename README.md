@@ -106,7 +106,7 @@ text
 
 ```bash
 # 1. Clonar
-git clone https://github.com/TU_USUARIO/fundednext-agents.git
+git clone https://github.com/marcelino170589/fundednext-agents.git
 cd fundednext-agents
 
 # 2. Entorno virtual
@@ -197,6 +197,32 @@ curl http://127.0.0.1:8000/api/telegram/status
 El dashboard incluye `manifest.webmanifest`, service worker e iconos. Se puede
 instalar desde el navegador (requiere HTTPS o localhost). Para APK, ver
 `docs/MOVIL_Y_MONETIZACION.md`.
+
+### Estado del EA y de la API
+
+La tarjeta **API** ya no se degrada porque el EA esté desconectado: la API tiene
+su propio estado (`/api/health` → `api.status`). El estado global (`status`) y
+sus causas (`status_reasons`) se muestran en **Sistema**.
+
+El EA se considera conectado cuando llega un heartbeat por ZMQ 5556 en los
+últimos 120 s. `ea_monitor.py` escucha ese puerto desde la API, así que el
+dashboard puede ver el EA aunque el orquestador esté reiniciándose. Se puede
+desactivar con `EA_MONITOR_ENABLED=false`.
+
+Si aparece **“EA sin heartbeat”**:
+
+```bash
+# 1. Ver si el EA está publicando en el puerto 5556
+ss -lunp | grep 5556       # en Windows/MT5 no aplica; revisa el firewall
+# 2. Comprobar la IP configurada
+grep ZMQ_PC_IP .env
+# 3. Ver el estado del monitor en /api/health
+curl http://127.0.0.1:8000/api/health
+```
+
+En el EA, `ZMQ_PYTHON_HOST` debe apuntar a la IP de la máquina Python y el
+puerto de estado debe ser 5556. Si el orquestador está detenido, el monitor de
+la API puede mantener el heartbeat igualmente.
 
 ⚠️ Advertencias
 No es una máquina de hacer dinero. Es una herramienta de análisis y filtrado.
