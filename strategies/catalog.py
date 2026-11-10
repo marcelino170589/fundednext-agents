@@ -16,6 +16,7 @@ from statistics import mean
 from strategies.extra_indicators import (
     bollinger_breakout, rsi_divergence, ma_crossover, macd_signal,
 )
+from strategies.trullas import trullas_macd_triple_divergence
 
 
 def ema(values, period):
@@ -283,6 +284,10 @@ CATALOG = {
     "macd_signal": {"fn": macd_signal, "timeframes": ["H1", "H4", "D1"]},
     "order_flow_imbalance": {"fn": order_flow, "timeframes": ["M15", "H1"]},
     "rsi2_bollinger": {"fn": rsi2_bb, "timeframes": ["H1", "H4"]},
+    "trullas_macd_triple_divergence": {
+        "fn": trullas_macd_triple_divergence,
+        "timeframes": ["M5", "M15", "H1", "H4"],
+    },
 }
 
 
@@ -298,6 +303,7 @@ def evaluar_todas(symbol, timeframe, velas, cfg):
         try:
             s = meta["fn"](velas, symbol, cfg)
             if s:
+                s.setdefault("timeframe", timeframe)
                 señales.append(s)
         except Exception:
             continue

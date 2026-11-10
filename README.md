@@ -1,6 +1,6 @@
 # FundedNext AI Trading System
 
-Sistema multi-agente de análisis y señalización para trading en forex, índices y commodities. Combina 6 agentes de IA, 9 estrategias técnicas validadas, análisis fundamental en tiempo real y gestión de riesgo para cuentas de prop firms (FundedNext FNL:004).
+Sistema multi-agente de análisis y señalización para trading en forex, índices y commodities. Combina 6 agentes de IA, 10 estrategias técnicas (9 validadas + Trullás), análisis fundamental en tiempo real y gestión de riesgo para cuentas de prop firms (FundedNext FNL:004).
 
 > **Modo de uso**: el sistema **no ejecuta órdenes**. Genera señales, las valida con 9 capas de defensa y las envía a un dashboard local para que el trader las ejecute manualmente.
 
@@ -26,7 +26,7 @@ Sistema multi-agente de análisis y señalización para trading en forex, índic
 │ • HTF Pullback (estructura H1/H4) │
 │ • Cazador de Oportunidades (60 instrumentos) │
 │ │
-│ 9 Estrategias: │
+│ 10 Estrategias: │
 │ • Fozzy (RSI8 + EMA8) │
 │ • Turtle (Donchian 20/10) │
 │ • Larry Williams (%R + MA10) │
@@ -36,6 +36,7 @@ Sistema multi-agente de análisis y señalización para trading en forex, índic
 │ • MACD Signal │
 │ • Order Flow │
 │ • MTF Alignment (H4/H1/M15/M5) │
+│ • Trullás (MACD triple divergencia) │
 │ │
 │ 9 Capas de defensa en el consenso + filtro de correlación │
 └──────────────────────────┬──────────────────────────────────┘

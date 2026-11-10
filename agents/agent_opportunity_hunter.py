@@ -4,7 +4,7 @@ Agente Cazador de Oportunidades con filtro fundamental, caché,
 correlación y score mínimo configurable.
 
 Escanea todos los instrumentos (forex, índices, commodities, metales).
-Integra 9 estrategias + HTF + MTF.
+Integra 10 estrategias + HTF + MTF.
 """
 import logging
 import time
@@ -15,6 +15,7 @@ from strategies.catalog import (
 from strategies.extra_indicators import (
     bollinger_breakout, rsi_divergence, ma_crossover, macd_signal,
 )
+from strategies.trullas import trullas_macd_triple_divergence
 from symbol_config import get_config, supported_symbols
 from calendar_client import ventana_bloqueada
 
@@ -182,13 +183,13 @@ def _detectar_mtf(velas_por_tf, symbol):
 
 
 # ═══════════════════════════════════════════════════════════════
-# Evaluación de un par (9 estrategias + HTF + MTF)
+# Evaluación de un par (10 estrategias + HTF + MTF)
 # ═══════════════════════════════════════════════════════════════
 
 def _evaluar_par(symbol, velas_por_tf, balance=50000.0,
                  usar_fundamental=True, min_confluencia=2):
     """
-    Evalúa un par con las 9 estrategias + HTF + MTF.
+    Evalúa un par con las 10 estrategias + HTF + MTF.
     Retorna dict con la mejor señal o None.
     """
     cfg = get_config(symbol)
@@ -229,6 +230,7 @@ def _evaluar_par(symbol, velas_por_tf, balance=50000.0,
             (ma_crossover, "ma_crossover"),
             (macd_signal, "macd_signal"),
             (rsi_divergence, "rsi_divergence"),
+            (trullas_macd_triple_divergence, "trullas"),
         ]:
             try:
                 s = fn(h4, symbol, cfg.__dict__)
@@ -244,6 +246,7 @@ def _evaluar_par(symbol, velas_por_tf, balance=50000.0,
             (macd_signal, "macd_signal"),
             (rsi_divergence, "rsi_divergence"),
             (rsi2_bb, "rsi2_bb"),
+            (trullas_macd_triple_divergence, "trullas"),
         ]:
             try:
                 s = fn(h1, symbol, cfg.__dict__)
@@ -259,6 +262,22 @@ def _evaluar_par(symbol, velas_por_tf, balance=50000.0,
             s = order_flow(m15, symbol, cfg.__dict__)
             if s:
                 señales.append({**s, "tf": "M15", "fuente": "order_flow"})
+        except Exception:
+            pass
+        try:
+            s = trullas_macd_triple_divergence(m15, symbol, cfg.__dict__)
+            if s:
+                señales.append({**s, "tf": "M15", "fuente": "trullas"})
+        except Exception:
+            pass
+
+    # ═══ ESTRATEGIAS M5 ═══
+    m5 = velas_por_tf.get("M5", [])
+    if len(m5) >= 90:
+        try:
+            s = trullas_macd_triple_divergence(m5, symbol, cfg.__dict__)
+            if s:
+                señales.append({**s, "tf": "M5", "fuente": "trullas"})
         except Exception:
             pass
 

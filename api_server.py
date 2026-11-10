@@ -429,6 +429,8 @@ async def api_strategies():
              "desc": "Alineación multi-timeframe de estructura y momentum."},
             {"name": "HTF Pullback", "timeframes": "H4/H1",
              "desc": "Retroceso saludable a zona clave con vela de rechazo."},
+            {"name": "Trullás · MACD triple divergencia", "timeframes": "M5/M15/H1/H4",
+             "desc": "Tres pivotes con divergencia MACD, confirmación RSI/volumen y zona Fibonacci. Aproximación pública, no validada por el autor."},
         ],
         "validated": [
             {"strategy": "Turtle S2 (55/20)", "symbol": "XAUUSD",

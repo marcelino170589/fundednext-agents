@@ -16,7 +16,7 @@ Componentes reales:
 | Datos de mercado | EA `MQL5/OrchestratorEA.mq5` publica D1/H4/H1/M15/M5 por ZMQ. |
 | Orquestación | `orchestrator.py`: ciclo cada 15 min sobre 4 símbolos principales + cazador de 60 instrumentos. |
 | Agentes | Trader, fundamental, técnico, adversario, HTF y cazador (`agents/`). |
-| Estrategias | 9 estrategias + HTF Pullback + MTF (`strategies/`). |
+| Estrategias | 10 estrategias (incluye Trullás) + HTF Pullback + MTF (`strategies/`). |
 | Consenso | `consensus_v2.py`: 9 capas de veto/score. |
 | Riesgo | `fundednext_rules.py`, `profit_tracker.py`, `state_manager.py`. |
 | Persistencia | `journal.py` sobre SQLite (`data/journal.db`, WAL). |
@@ -228,7 +228,7 @@ El servidor de esta sesión se dejó corriendo en `http://127.0.0.1:8000` como j
 - Prueba de render con `jsdom` (sin navegador real):
   - 4 gauges, 4 KPIs, 4 próximos eventos, 6 filas de salud.
   - Noticias: 8 eventos, 12 titulares, 8 pasos de pipeline, 4 filas de salud.
-  - Oportunidades: 9 tarjetas, 53 decisiones, 15 velas, 3 backtests, 10 estrategias, 24 filas de configuración.
+  - Oportunidades: 9 tarjetas, 53 decisiones, 15 velas, 3 backtests, catálogo de estrategias (incluye Trullás), 24 filas de configuración.
   - Interacciones: modal de decisión con 7 tarjetas de agentes, drawer de 12 alertas, modal de oportunidad, cambio H1→M15, carga de logs.
   - Consola: 0 errores.
 - Comprobación de zona horaria: `CPI 13:30 UTC` para el evento de las 08:30-05:00.
@@ -252,6 +252,8 @@ Limitaciones de la verificación:
 | `agents/agent_fundamental.py` | Normaliza `bloqueado_por_noticia`. |
 | `agents/agent_opportunity_hunter.py` | Usa `news_feed`. |
 | `consensus_v2.py` | Guarda `score` en vetos. |
+| `strategies/trullas.py` | MACD triple divergencia, RSI, volumen y Fibonacci (aproximación pública). |
+| `docs/ESTRATEGIA_TRULLAS.md` | Reglas, fuentes, límites y validación pendiente. |
 | `journal.py` | Helpers de decisión, señales, resumen y conteos. |
 | `notifier.py` | Telegram completo: cola, chunks, reintentos, rate-limit y deduplicación. |
 | `static/manifest.webmanifest`, `static/sw.js`, `static/icon-*.png` | PWA instalable. |
